@@ -11,3 +11,8 @@ script = ExtResource("1_ve3qt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("RectangleShape2D_f0yss")
+
+[node name="DashTimer" type="Timer" parent="CharacterBody2D"]
+one_shot = true
+
+[connection signal="timeout" from="CharacterBody2D/DashTimer" to="CharacterBody2D" method="_on_dash_timer_timeout"]
