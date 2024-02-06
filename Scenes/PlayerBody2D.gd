@@ -25,22 +25,20 @@ func _physics_process(delta):
 	directionVector = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
 	directionVector = directionVector.normalized()
 	
-	if !directionVector.x:
+	if !directionVector.x && is_on_floor():
 		endDash()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	elif jumps > 0:
+	elif dash_timer.is_stopped():
+		isDashing = false
+	
+	if jumps > 0 && is_on_floor():
 		land()
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump"):
-		if is_on_floor():
-			velocity.y = JUMP_VELOCITY
-			jumps += 1
-		elif maxJumps > jumps:
-			velocity.y = JUMP_VELOCITY / 2
-			jumps += 1
+		jump()
 			
 	# Handle dash.
 	if Input.is_action_just_pressed("dash") && !isDashing && dash_timer.is_stopped():
@@ -64,11 +62,22 @@ func dash():
 		if !is_on_floor():
 			dashes += 1
 
+func jump():
+	if !is_on_floor():
+		isDashing = false
+	if is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		jumps += 1
+	elif maxJumps > jumps:
+		velocity.y = JUMP_VELOCITY / 1.2
+		jumps += 1
+
 func endDash():
 	isDashing = false
 
 func _on_dash_timer_timeout():
-	endDash()
+	if is_on_floor():
+		endDash()
 
 func land():
 	jumps = 0
