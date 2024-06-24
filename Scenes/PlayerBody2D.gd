@@ -1,9 +1,13 @@
 extends CharacterBody2D
 
 @onready var dash_timer = $DashTimer
+@onready var hitbox = $Hitbox
+@onready var animatedTree = $AnimationPlayer/AnimationTree
+@onready var A_State = "parameters/Transition/transition_request"
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+var facing = -1
 
 var level = 0
 var xp = 0
@@ -14,16 +18,26 @@ var maxDashes = 1
 var dashes = 0
 var dashDuration = 5
 
+var damage = 10
+
 #states
 var isDashing = false
 var directionVector = Vector2()
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func _ready():
+	animatedTree.set_deferred("active", true)
 
 func _physics_process(delta):
 	directionVector = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
 	directionVector = directionVector.normalized()
+	
+	if Input.is_action_just_pressed("attack0"):
+		animatedTree.set(A_State, "attack")
+	
+	if directionVector.x != 0:
+		setFacing(directionVector.x)
 	
 	if !directionVector.x && is_on_floor():
 		endDash()
@@ -82,3 +96,15 @@ func _on_dash_timer_timeout():
 func land():
 	jumps = 0
 	dashes = 0
+
+func setFacing(value):
+	if facing != value:
+		facing = value
+		scale.x = -1
+
+func _on_hitbox_body_entered(body):
+	if body.is_in_group("Enemy"):
+		body.takeDamage(damage)
+
+func returnToIdle():
+	animatedTree.set(A_State, "idle")

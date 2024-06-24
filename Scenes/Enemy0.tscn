@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://5c0emt8c5dxv"]
+
+[ext_resource type="Texture2D" uid="uid://c7b0ms8xsyq4w" path="res://Art/Sprites/Enemy.png" id="1_q454f"]
+[ext_resource type="Script" path="res://Scenes/Enemy0.gd" id="1_y111n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l4cxf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_q454f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55uyq"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemy"]]
+scale = Vector2(2.79301, 2.79301)
+script = ExtResource("1_y111n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(9, -3)
+scale = Vector2(0.0911063, 0.0958084)
+sprite_frames = SubResource("SpriteFrames_l4cxf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_55uyq")
+debug_color = Color(0, 0.639216, 0.34902, 0.419608)
