@@ -39,7 +39,7 @@ func _physics_process(delta):
 	if directionVector.x != 0:
 		setFacing(directionVector.x)
 	
-	if !directionVector.x && is_on_floor():
+	if !directionVector.x && !is_on_floor():
 		endDash()
 	# Add the gravity.
 	if not is_on_floor():
@@ -53,17 +53,16 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("jump"):
 		jump()
-			
+	
 	# Handle dash.
 	if Input.is_action_just_pressed("dash") && !isDashing && dash_timer.is_stopped():
 		dash()
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
+	elif (Input.get_action_strength("dash") > 0 || !is_on_floor()) && isDashing:
+			velocity.x = facing * SPEED * 4
 	elif directionVector.x:
-		if isDashing:
-			velocity.x = directionVector.x * SPEED * 4
-		else:
-			velocity.x = directionVector.x * SPEED
+		velocity.x = directionVector.x * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
@@ -72,7 +71,7 @@ func _physics_process(delta):
 func dash():
 	if dashes < maxDashes:
 		isDashing = true
-		dash_timer.start(0.1)
+		dash_timer.start(0.5)
 		if !is_on_floor():
 			dashes += 1
 

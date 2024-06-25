@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Project 24"
+config/name="Makai no soko ni"
 run/main_scene="res://Scenes/main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Art/Sprites/Enemy.png"
 
 [display]
 
