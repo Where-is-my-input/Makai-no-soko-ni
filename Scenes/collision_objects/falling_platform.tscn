@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://daccvelcfm2au"]
+
+[ext_resource type="PackedScene" uid="uid://bovqlon3fgh62" path="res://Scenes/collision_objects/platform.tscn" id="1_hiqhc"]
+[ext_resource type="Script" path="res://Scenes/collision_objects/falling_platform.gd" id="2_7p70p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwg1k"]
+size = Vector2(62, 8)
+
+[node name="falling_platform" instance=ExtResource("1_hiqhc")]
+script = ExtResource("2_7p70p")
+
+[node name="Area2D" type="Area2D" parent="cbPlatform" index="1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cbPlatform/Area2D" index="0"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_dwg1k")
+debug_color = Color(0.520577, 0.417988, 1, 0.42)
+
+[connection signal="body_entered" from="cbPlatform/Area2D" to="." method="_on_area_2d_body_entered"]

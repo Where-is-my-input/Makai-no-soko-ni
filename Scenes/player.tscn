@@ -359,7 +359,6 @@ animation = &"attack0"
 animation = &"idle"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_impnq"]
-graph_offset = Vector2(0, -36)
 nodes/Transition/node = SubResource("AnimationNodeTransition_u488e")
 nodes/Transition/position = Vector2(840, 60)
 nodes/attack0/node = SubResource("AnimationNodeAnimation_uju1a")
@@ -409,6 +408,10 @@ position = Vector2(-139, -73.5)
 shape = SubResource("RectangleShape2D_ioumt")
 disabled = true
 debug_color = Color(1, 0, 0.105882, 0.419608)
+
+[node name="useLaterInsteadOfCamera" type="RemoteTransform2D" parent="CharacterBody2D"]
+
+[node name="deleteLater" type="Camera2D" parent="CharacterBody2D"]
 
 [connection signal="timeout" from="CharacterBody2D/DashTimer" to="CharacterBody2D" method="_on_dash_timer_timeout"]
 [connection signal="body_entered" from="CharacterBody2D/Hitbox" to="CharacterBody2D" method="_on_hitbox_body_entered"]

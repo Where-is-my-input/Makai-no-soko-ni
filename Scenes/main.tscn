@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://brpryaa6blx3x"]
+[gd_scene load_steps=5 format=3 uid="uid://brpryaa6blx3x"]
 
 [ext_resource type="PackedScene" uid="uid://c5euaw5jcse1y" path="res://Scenes/player.tscn" id="1_tgdj8"]
 [ext_resource type="PackedScene" uid="uid://5c0emt8c5dxv" path="res://Scenes/Enemy0.tscn" id="2_hu37d"]
+[ext_resource type="PackedScene" uid="uid://daccvelcfm2au" path="res://Scenes/collision_objects/falling_platform.tscn" id="3_j3hri"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uhbv0"]
 size = Vector2(1186, 37)
@@ -19,3 +20,6 @@ shape = SubResource("RectangleShape2D_uhbv0")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_hu37d")]
 position = Vector2(1440, 830)
+
+[node name="falling_platform" parent="." instance=ExtResource("3_j3hri")]
+position = Vector2(1036, 444)
