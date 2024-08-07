@@ -1,4 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://d5ecinhvtmc0"]
+[gd_scene load_steps=11 format=3 uid="uid://d5ecinhvtmc0"]
+
+[ext_resource type="Texture2D" uid="uid://63pt46lptvd2" path="res://icon.svg" id="1_aaig4"]
 
 [sub_resource type="Curve2D" id="Curve2D_2qdis"]
 _data = {
@@ -56,6 +58,7 @@ animation = &"move"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_k3pgo"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3nrus"]
+graph_offset = Vector2(-62.6421, 33.9161)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_xb33m")
 nodes/Animation/position = Vector2(350, 178)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_k3pgo")
@@ -69,14 +72,11 @@ node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
 curve = SubResource("Curve2D_2qdis")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(416.176, 0)
-progress = 416.177
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
 remote_path = NodePath("../../AnimatableBody2D")
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="Path2D"]
-position = Vector2(416.176, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/AnimatableBody2D"]
 shape = SubResource("RectangleShape2D_gr87i")
@@ -89,6 +89,8 @@ metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/AnimatableBody2D"]
 light_mask = 0
+scale = Vector2(1.27624, 0.171875)
+texture = ExtResource("1_aaig4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Path2D"]
 libraries = {
@@ -97,6 +99,7 @@ libraries = {
 autoplay = "move"
 
 [node name="AnimationTree" type="AnimationTree" parent="Path2D"]
+active = false
 tree_root = SubResource("AnimationNodeBlendTree_3nrus")
 anim_player = NodePath("../AnimationPlayer")
 parameters/TimeScale/scale = 1.0
