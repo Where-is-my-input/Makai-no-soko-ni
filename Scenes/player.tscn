@@ -1,7 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://c5euaw5jcse1y"]
+[gd_scene load_steps=16 format=3 uid="uid://c5euaw5jcse1y"]
 
+[ext_resource type="Script" path="res://Scenes/player/player.gd" id="1_ip5ye"]
 [ext_resource type="Script" path="res://Scenes/PlayerBody2D.gd" id="1_ve3qt"]
 [ext_resource type="Texture2D" uid="uid://bbppqe043jjsl" path="res://Art/Sprites/Sprite.png" id="2_s3nqm"]
+[ext_resource type="PackedScene" uid="uid://c8mw8cyfugn4y" path="res://Scenes/system/level_system.tscn" id="4_1ttua"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0yss"]
 size = Vector2(76, 193)
@@ -368,7 +370,9 @@ nodes/idle/position = Vector2(520, 40)
 nodes/output/position = Vector2(1120, 140)
 node_connections = [&"Transition", 0, &"idle", &"Transition", 1, &"attack0", &"output", 0, &"Transition"]
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("levelComponent")]
+script = ExtResource("1_ip5ye")
+levelComponent = NodePath("level_system")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_ve3qt")
@@ -412,6 +416,8 @@ debug_color = Color(1, 0, 0.105882, 0.419608)
 [node name="useLaterInsteadOfCamera" type="RemoteTransform2D" parent="CharacterBody2D"]
 
 [node name="deleteLater" type="Camera2D" parent="CharacterBody2D"]
+
+[node name="level_system" parent="." instance=ExtResource("4_1ttua")]
 
 [connection signal="timeout" from="CharacterBody2D/DashTimer" to="CharacterBody2D" method="_on_dash_timer_timeout"]
 [connection signal="body_entered" from="CharacterBody2D/Hitbox" to="CharacterBody2D" method="_on_hitbox_body_entered"]
