@@ -60,11 +60,13 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	elif (Input.get_action_strength("dash") > 0 || !is_on_floor()) && isDashing:
-			velocity.x = facing * SPEED * 4
+			#velocity.x = facing * SPEED * 4
+			velocity.x = facing * (abs(velocity.x / SPEED) + SPEED) * 4
 	elif directionVector.x:
 		velocity.x = directionVector.x * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	print(SPEED, " - ", facing, " - ", abs(velocity.x), " - ", 4)
 
 	move_and_slide()
 

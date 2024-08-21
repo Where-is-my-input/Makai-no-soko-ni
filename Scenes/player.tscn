@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/player/player.gd" id="1_ip5ye"]
 [ext_resource type="Script" path="res://Scenes/PlayerBody2D.gd" id="1_ve3qt"]
-[ext_resource type="Texture2D" uid="uid://bbppqe043jjsl" path="res://Art/Sprites/Sprite.png" id="2_s3nqm"]
+[ext_resource type="Texture2D" uid="uid://bbppqe043jjsl" path="res://assets/Sprites/Sprite.png" id="2_s3nqm"]
 [ext_resource type="PackedScene" uid="uid://c8mw8cyfugn4y" path="res://Scenes/system/level_system.tscn" id="4_1ttua"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0yss"]
@@ -349,9 +349,11 @@ _data = {
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_u488e"]
 input_0/name = "idle"
 input_0/auto_advance = false
+input_0/break_loop_at_end = false
 input_0/reset = true
 input_1/name = "attack"
 input_1/auto_advance = false
+input_1/break_loop_at_end = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uju1a"]
