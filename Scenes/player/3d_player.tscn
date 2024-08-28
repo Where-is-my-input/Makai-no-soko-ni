@@ -17,5 +17,9 @@ shape = SubResource("BoxShape3D_enm1q")
 
 [node name="Character Base" parent="CharacterBody3D" instance=ExtResource("1_whgru")]
 
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 25)
+current = true
+
 [node name="dashTimer" type="Timer" parent="."]
 one_shot = true
