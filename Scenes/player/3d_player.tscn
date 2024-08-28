@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpq3rvv05f3a5"]
+
+[ext_resource type="PackedScene" uid="uid://dnxwhhyek2nes" path="res://assets/3D/Character Base.blend" id="1_whgru"]
+[ext_resource type="Script" path="res://Scenes/player/character_body_3d.gd" id="2_noga4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_enm1q"]
+size = Vector3(1, 3.90137, 1)
+
+[node name="3D_player" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("2_noga4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.661621, 0)
+shape = SubResource("BoxShape3D_enm1q")
+
+[node name="Character Base" parent="CharacterBody3D" instance=ExtResource("1_whgru")]
+
+[node name="dashTimer" type="Timer" parent="."]
+one_shot = true

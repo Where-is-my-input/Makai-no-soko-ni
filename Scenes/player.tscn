@@ -276,7 +276,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(76, 193)]
+"values": [Vector2(60, 193)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -376,11 +376,11 @@ node_connections = [&"Transition", 0, &"idle", &"Transition", 1, &"attack0", &"o
 script = ExtResource("1_ip5ye")
 levelComponent = NodePath("level_system")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
 script = ExtResource("1_ve3qt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(1, -52)
+position = Vector2(0, -82)
 scale = Vector2(0.848933, 0.849929)
 shape = SubResource("RectangleShape2D_f0yss")
 debug_color = Color(0, 0.65098, 0.027451, 0.419608)

@@ -22,6 +22,7 @@ text = "MAI9N"
 
 [node name="Button3" type="Button" parent="Control/BoxContainer"]
 layout_mode = 2
+text = "main 3d"
 
 [node name="Button4" type="Button" parent="Control/BoxContainer"]
 layout_mode = 2
@@ -48,3 +49,4 @@ layout_mode = 2
 layout_mode = 2
 
 [connection signal="pressed" from="Control/BoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/BoxContainer/Button3" to="." method="_on_button_3_pressed"]
