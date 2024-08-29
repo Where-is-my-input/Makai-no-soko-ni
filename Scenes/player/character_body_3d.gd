@@ -7,7 +7,8 @@ extends CharacterBody3D
 #@onready var A_State = "parameters/Transition/transition_request"
 
 const SPEED = 30.0
-const JUMP_VELOCITY = 12.0
+const DASH_SPEED = 75.0
+const JUMP_VELOCITY = 35.0
 var facing = -1
 
 var level = 0
@@ -62,7 +63,8 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	elif (Input.get_action_strength("dash") > 0 || !is_on_floor()) && isDashing:
 			#velocity.x = facing * SPEED * 4
-			velocity.x = facing * (abs(velocity.x / SPEED) + SPEED) * 4
+			#velocity.x = facing * (abs(velocity.x / SPEED) + SPEED) * 4
+			velocity.x = facing * DASH_SPEED
 	elif directionVector.x:
 		velocity.x = directionVector.x * SPEED
 		isDashing = false

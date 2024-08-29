@@ -1,12 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://cb0b5sivci483"]
 
 [ext_resource type="PackedScene" uid="uid://dpq3rvv05f3a5" path="res://Scenes/player/3d_player.tscn" id="1_wptg2"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_2p4xl"]
-size = Vector3(10, 1, 1)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_45th8"]
-data = PackedVector3Array(-5, 0.5, 0.5, 5, 0.5, 0.5, -5, -0.5, 0.5, 5, 0.5, 0.5, 5, -0.5, 0.5, -5, -0.5, 0.5, 5, 0.5, -0.5, -5, 0.5, -0.5, 5, -0.5, -0.5, -5, 0.5, -0.5, -5, -0.5, -0.5, 5, -0.5, -0.5, 5, 0.5, 0.5, 5, 0.5, -0.5, 5, -0.5, 0.5, 5, 0.5, -0.5, 5, -0.5, -0.5, 5, -0.5, 0.5, -5, 0.5, -0.5, -5, 0.5, 0.5, -5, -0.5, -0.5, -5, 0.5, 0.5, -5, -0.5, 0.5, -5, -0.5, -0.5, 5, 0.5, 0.5, -5, 0.5, 0.5, 5, 0.5, -0.5, -5, 0.5, 0.5, -5, 0.5, -0.5, 5, 0.5, -0.5, -5, -0.5, 0.5, 5, -0.5, 0.5, -5, -0.5, -0.5, 5, -0.5, 0.5, 5, -0.5, -0.5, -5, -0.5, -0.5)
+[ext_resource type="PackedScene" uid="uid://da3agagor31q1" path="res://Scenes/grid_map/grid_map.tscn" id="2_js2cu"]
+[ext_resource type="PackedScene" uid="uid://kfwybxdlfnmi" path="res://system/debugger.tscn" id="3_qj858"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8anln"]
 sky_top_color = Color(0.838179, 0, 0.19661, 1)
@@ -31,17 +27,8 @@ sky = SubResource("Sky_expa3")
 
 [node name="main_3D" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_2p4xl")
-skeleton = NodePath("")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_45th8")
-
 [node name="3D_player" parent="." instance=ExtResource("1_wptg2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.15219, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.91691, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.186702, 4.08809, 12.5761)
@@ -67,3 +54,10 @@ shape = SubResource("CapsuleShape3D_pdne8")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="RigidBody3D2"]
 mesh = SubResource("CylinderMesh_qpmfw")
 skeleton = NodePath("../..")
+
+[node name="GridMap" parent="." instance=ExtResource("2_js2cu")]
+data = {
+"cells": PackedInt32Array(3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 65535, 0, 0, 65534, 0, 0, 65533, 0, 0, 65532, 0, 0, 9, 0, 0, 13, 0, 0, 7, 0, 0, 8, 0, 0, 26, 0, 0, 25, 0, 0, 24, 0, 0, 22, 0, 0, 21, 0, 0, 20, 0, 0, 19, 0, 0, 18, 0, 0, 17, 0, 0, 16, 0, 0, 15, 0, 0, 14, 0, 0, 65531, 0, 0, 65530, 0, 0, 65529, 0, 0, 65527, 0, 0, 65526, 0, 0, 65525, 0, 0, 65524, 0, 0, 65528, 0, 0, 65521, 0, 0, 65520, 0, 0, 65519, 0, 0, 65522, 0, 0, 65523, 0, 0, 26, 65535, 0, 25, 65535, 0, 24, 65535, 0, 23, 65535, 0, 22, 65535, 0, 21, 65535, 0, 20, 65535, 0, 19, 65535, 0, 18, 65535, 0, 17, 65535, 0, 16, 65535, 0, 15, 65535, 0, 14, 65535, 0, 13, 65535, 0, 12, 65535, 0, 11, 65535, 0, 5, 65535, 0, 4, 65535, 0, 3, 65535, 0, 2, 65535, 0, 1, 65535, 0, 0, 65535, 0, 65535, 65535, 0, 65534, 65535, 0, 65533, 65535, 0, 65532, 65535, 0, 65531, 65535, 0, 65530, 65535, 0, 65529, 65535, 0, 65528, 65535, 0, 65527, 65535, 0, 65526, 65535, 0, 65525, 65535, 0, 65524, 65535, 0, 65523, 65535, 0, 65522, 65535, 0, 65521, 65535, 0, 65520, 65535, 0, 65519, 65535, 0, 6, 65535, 0, 7, 65535, 0, 8, 65535, 0, 9, 65535, 0, 10, 65535, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0)
+}
+
+[node name="debugger" parent="." instance=ExtResource("3_qj858")]
