@@ -1,6 +1,8 @@
 extends CharacterBody3D
 
 @onready var dash_timer: Timer = $"../dashTimer"
+@onready var aTree: AnimationTree = $"../AnimationPlayer/AnimationTree"
+@onready var aPlayer: AnimationPlayer = $"../AnimationPlayer"
 
 #@onready var hitbox = $Hitbox
 #@onready var animatedTree = $AnimationPlayer/AnimationTree
@@ -28,8 +30,9 @@ var directionVector = Vector2()
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-#func _ready():
-	#animatedTree.set_deferred("active", true)
+func _ready():
+	aTree.set_deferred("active", true)
+	aPlayer.set_deferred("active", true)
 
 func _physics_process(delta):
 	directionVector = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
@@ -51,6 +54,10 @@ func _physics_process(delta):
 	
 	if jumps > 0 && is_on_floor():
 		land()
+
+	if Input.is_action_just_pressed("attack0"):
+		print("pressed")
+		aTree.set("parameters/state/transition_request", "attack")
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump"):
@@ -107,6 +114,7 @@ func setFacing(value):
 		scale.x = -1
 
 func _on_hitbox_body_entered(body):
+	print("hit")
 	if body.is_in_group("Enemy"):
 		body.takeDamage(damage)
 
