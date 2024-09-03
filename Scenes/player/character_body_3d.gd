@@ -6,7 +6,7 @@ extends CharacterBody3D
 
 #@onready var hitbox = $Hitbox
 #@onready var animatedTree = $AnimationPlayer/AnimationTree
-#@onready var A_State = "parameters/Transition/transition_request"
+@onready var A_State = "parameters/state/transition_request"
 
 const SPEED = 30.0
 const DASH_SPEED = 75.0
@@ -32,7 +32,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	aTree.set_deferred("active", true)
-	aPlayer.set_deferred("active", true)
+	#aPlayer.set_deferred("active", true)
 
 func _physics_process(delta):
 	directionVector = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
@@ -57,7 +57,7 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("attack0"):
 		print("pressed")
-		aTree.set("parameters/state/transition_request", "attack")
+		aTree.set(A_State, "attack")
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump"):
@@ -118,5 +118,5 @@ func _on_hitbox_body_entered(body):
 	if body.is_in_group("Enemy"):
 		body.takeDamage(damage)
 
-#func returnToIdle():
-	#animatedTree.set(A_State, "idle")
+func returnToIdle():
+	aTree.set(A_State, "idle")
