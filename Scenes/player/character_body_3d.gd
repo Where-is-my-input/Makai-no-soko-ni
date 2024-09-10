@@ -11,7 +11,7 @@ extends CharacterBody3D
 const SPEED = 30.0
 const DASH_SPEED = 75.0
 const JUMP_VELOCITY = 35.0
-var facing = -1
+var facing = 1
 
 var level = 0
 var xp = 0
@@ -111,7 +111,7 @@ func land():
 func setFacing(value):
 	if facing != value:
 		facing = value
-		scale.x = -1
+		scale.x *= -1
 
 func _on_hitbox_body_entered(body):
 	print("hit")

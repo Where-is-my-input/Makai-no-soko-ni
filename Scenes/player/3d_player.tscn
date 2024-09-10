@@ -213,6 +213,10 @@ node_connections = [&"output", 0, &"state", &"state", 0, &"idle", &"state", 1, &
 
 [node name="3D_player" type="Node3D"]
 
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.985097, 0.171998, 0, -0.171998, 0.985097, 0, 10, 25)
+current = true
+
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 script = ExtResource("2_noga4")
 
@@ -221,10 +225,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.661621, 0)
 shape = SubResource("BoxShape3D_enm1q")
 
 [node name="Character Base" parent="CharacterBody3D" instance=ExtResource("1_whgru")]
-
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 25)
-current = true
 
 [node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
