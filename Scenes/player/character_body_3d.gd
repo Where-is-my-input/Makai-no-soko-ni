@@ -3,6 +3,8 @@ extends CharacterBody3D
 @onready var dash_timer: Timer = $"../dashTimer"
 @onready var aTree: AnimationTree = $"../AnimationPlayer/AnimationTree"
 @onready var aPlayer: AnimationPlayer = $"../AnimationPlayer"
+@onready var hitbox: Area3D = $hitbox
+@onready var camera_3d: Camera3D = $Camera3D
 
 #@onready var hitbox = $Hitbox
 #@onready var animatedTree = $AnimationPlayer/AnimationTree
@@ -35,6 +37,7 @@ func _ready():
 	#aPlayer.set_deferred("active", true)
 
 func _physics_process(delta):
+	camera_3d.global_position.x = global_position.x
 	directionVector = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
 	directionVector = directionVector.normalized()
 	
@@ -120,3 +123,8 @@ func _on_hitbox_body_entered(body):
 
 func returnToIdle():
 	aTree.set(A_State, "idle")
+
+func setHitboxDisabled(value = true):
+	print(value, " - disabled")
+	for c in hitbox.get_children():
+		c.set_deferred("disabled", value)
