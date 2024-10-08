@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://brpryaa6blx3x"]
+[gd_scene load_steps=8 format=3 uid="uid://brpryaa6blx3x"]
 
 [ext_resource type="PackedScene" uid="uid://c5euaw5jcse1y" path="res://Scenes/player.tscn" id="1_tgdj8"]
 [ext_resource type="PackedScene" uid="uid://5c0emt8c5dxv" path="res://Scenes/Enemy0.tscn" id="2_hu37d"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d5ecinhvtmc0" path="res://Scenes/collision_objects/moving_platform.tscn" id="4_wu6sk"]
 [ext_resource type="PackedScene" uid="uid://bw2fb0ynhxejh" path="res://Scenes/tileset/tile_map.tscn" id="6_0l4rx"]
 [ext_resource type="PackedScene" uid="uid://ciqg174sswpaw" path="res://Scenes/npcs/mob.tscn" id="6_ls3em"]
+[ext_resource type="PackedScene" uid="uid://d4aexgs6n4rl2" path="res://Scenes/collision_objects/illusion_platform.tscn" id="7_d3ab4"]
 
 [node name="Main" type="Node2D"]
 position = Vector2(211, -6)
@@ -28,3 +29,6 @@ layer_0/tile_data = PackedInt32Array(1114118, 0, 0, 1114119, 0, 0, 1114120, 0, 0
 [node name="mob" parent="." instance=ExtResource("6_ls3em")]
 position = Vector2(480, 998)
 scale = Vector2(-1, 1)
+
+[node name="illusion_platform" parent="." instance=ExtResource("7_d3ab4")]
+position = Vector2(1198, 918)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4aexgs6n4rl2"]
+
+[ext_resource type="PackedScene" uid="uid://bovqlon3fgh62" path="res://Scenes/collision_objects/platform.tscn" id="1_n4pp7"]
+[ext_resource type="Script" path="res://Scenes/collision_objects/illusion_platform.gd" id="2_s4c67"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rc1j"]
+size = Vector2(80, 32)
+
+[node name="illusion_platform" instance=ExtResource("1_n4pp7")]
+script = ExtResource("2_s4c67")
+
+[node name="Area2D" type="Area2D" parent="." index="1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("RectangleShape2D_1rc1j")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
