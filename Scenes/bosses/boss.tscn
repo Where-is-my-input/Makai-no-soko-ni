@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bp0l628jvenqb"]
+
+[ext_resource type="Script" path="res://Scenes/bosses/boss.gd" id="1_cc80q"]
+[ext_resource type="Texture2D" uid="uid://btd4mqoye2o4g" path="res://assets/wimiProductions.png" id="1_knd0e"]
+[ext_resource type="Script" path="res://Scenes/bosses/moves.gd" id="3_u616s"]
+[ext_resource type="PackedScene" uid="uid://ds536tt1shwum" path="res://Scenes/bosses/alexandra/vira_lunge.tscn" id="4_ukc7i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yrvcf"]
+size = Vector2(76, 193)
+
+[node name="boss" type="CharacterBody2D"]
+collision_layer = 65536
+collision_mask = 65536
+script = ExtResource("1_cc80q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yrvcf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 3.8147e-06)
+scale = Vector2(0.153846, 0.375969)
+texture = ExtResource("1_knd0e")
+
+[node name="moves" type="Node" parent="." node_paths=PackedStringArray("body", "ap", "moves")]
+script = ExtResource("3_u616s")
+body = NodePath("..")
+ap = NodePath("../ap")
+moves = [NodePath("vira_lunge")]
+
+[node name="vira_lunge" parent="moves" instance=ExtResource("4_ukc7i")]
+
+[node name="ap" type="AnimationPlayer" parent="."]

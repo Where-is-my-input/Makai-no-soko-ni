@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://brpryaa6blx3x"]
+[gd_scene load_steps=9 format=3 uid="uid://brpryaa6blx3x"]
 
 [ext_resource type="PackedScene" uid="uid://c5euaw5jcse1y" path="res://Scenes/player.tscn" id="1_tgdj8"]
 [ext_resource type="PackedScene" uid="uid://5c0emt8c5dxv" path="res://Scenes/Enemy0.tscn" id="2_hu37d"]
@@ -7,15 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://bw2fb0ynhxejh" path="res://Scenes/tileset/tile_map.tscn" id="6_0l4rx"]
 [ext_resource type="PackedScene" uid="uid://ciqg174sswpaw" path="res://Scenes/npcs/mob.tscn" id="6_ls3em"]
 [ext_resource type="PackedScene" uid="uid://d4aexgs6n4rl2" path="res://Scenes/collision_objects/illusion_platform.tscn" id="7_d3ab4"]
+[ext_resource type="PackedScene" uid="uid://bp0l628jvenqb" path="res://Scenes/bosses/boss.tscn" id="8_cdj2j"]
 
 [node name="Main" type="Node2D"]
 position = Vector2(211, -6)
 
 [node name="Player" parent="." instance=ExtResource("1_tgdj8")]
-position = Vector2(1823, 1058)
+position = Vector2(1823, 970)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_hu37d")]
-position = Vector2(1440, 830)
+position = Vector2(1324, 922)
 
 [node name="falling_platform" parent="." instance=ExtResource("3_j3hri")]
 position = Vector2(2463, 869)
@@ -32,3 +33,6 @@ scale = Vector2(-1, 1)
 
 [node name="illusion_platform" parent="." instance=ExtResource("7_d3ab4")]
 position = Vector2(1198, 918)
+
+[node name="boss" parent="." instance=ExtResource("8_cdj2j")]
+position = Vector2(1508, 938)

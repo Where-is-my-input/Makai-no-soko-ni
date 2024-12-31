@@ -418,6 +418,7 @@ debug_color = Color(1, 0, 0.105882, 0.419608)
 [node name="useLaterInsteadOfCamera" type="RemoteTransform2D" parent="CharacterBody2D"]
 
 [node name="deleteLater" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(0.5, 0.5)
 
 [node name="level_system" parent="." instance=ExtResource("4_1ttua")]
 
