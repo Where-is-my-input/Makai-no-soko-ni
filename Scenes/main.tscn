@@ -34,5 +34,6 @@ scale = Vector2(-1, 1)
 [node name="illusion_platform" parent="." instance=ExtResource("7_d3ab4")]
 position = Vector2(1198, 918)
 
-[node name="boss" parent="." instance=ExtResource("8_cdj2j")]
+[node name="boss" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_cdj2j")]
 position = Vector2(1508, 938)
+player = NodePath("../Player")

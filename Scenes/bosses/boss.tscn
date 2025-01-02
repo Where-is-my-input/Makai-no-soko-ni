@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bp0l628jvenqb"]
+[gd_scene load_steps=10 format=3 uid="uid://bp0l628jvenqb"]
 
 [ext_resource type="Script" path="res://Scenes/bosses/boss.gd" id="1_cc80q"]
 [ext_resource type="Texture2D" uid="uid://btd4mqoye2o4g" path="res://assets/wimiProductions.png" id="1_knd0e"]
@@ -7,6 +7,109 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yrvcf"]
 size = Vector2(76, 193)
+
+[sub_resource type="Animation" id="Animation_dfxk2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("a2dHitbox/hitbox:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("a2dHitbox/hitbox:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("a2dHitbox/hitbox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(167.5, 44)]
+}
+
+[sub_resource type="Animation" id="Animation_02yex"]
+resource_name = "lunge"
+length = 0.500002
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("a2dHitbox/hitbox:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("a2dHitbox/hitbox:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(345, 98), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("a2dHitbox/hitbox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(167.5, 44), Vector2(0, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("moves/vira_lunge")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.166667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"lunge"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mxf5f"]
+_data = {
+"RESET": SubResource("Animation_dfxk2"),
+"lunge": SubResource("Animation_02yex")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhhql"]
+size = Vector2(0, 0)
 
 [node name="boss" type="CharacterBody2D"]
 collision_layer = 65536
@@ -30,3 +133,20 @@ moves = [NodePath("vira_lunge")]
 [node name="vira_lunge" parent="moves" instance=ExtResource("4_ukc7i")]
 
 [node name="ap" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mxf5f")
+}
+
+[node name="a2dHitbox" type="Area2D" parent="."]
+
+[node name="hitbox" type="CollisionShape2D" parent="a2dHitbox"]
+position = Vector2(167.5, 44)
+shape = SubResource("RectangleShape2D_yhhql")
+disabled = true
+debug_color = Color(0.985503, 0, 0.333116, 0.42)
+
+[node name="tmrCooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="animation_finished" from="ap" to="." method="_on_ap_animation_finished"]
+[connection signal="timeout" from="tmrCooldown" to="." method="_on_tmr_cooldown_timeout"]

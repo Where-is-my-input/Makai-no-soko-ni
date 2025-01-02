@@ -376,29 +376,29 @@ node_connections = [&"Transition", 0, &"idle", &"Transition", 1, &"attack0", &"o
 script = ExtResource("1_ip5ye")
 levelComponent = NodePath("level_system")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
+[node name="body" type="CharacterBody2D" parent="." groups=["player"]]
 script = ExtResource("1_ve3qt")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
 position = Vector2(0, -82)
 scale = Vector2(0.848933, 0.849929)
 shape = SubResource("RectangleShape2D_f0yss")
 debug_color = Color(0, 0.65098, 0.027451, 0.419608)
 
-[node name="DashTimer" type="Timer" parent="CharacterBody2D"]
+[node name="DashTimer" type="Timer" parent="body"]
 one_shot = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="body"]
 position = Vector2(4, -96)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_opqis")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="body"]
 libraries = {
 "": SubResource("AnimationLibrary_7vriu")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="CharacterBody2D/AnimationPlayer"]
+[node name="AnimationTree" type="AnimationTree" parent="body/AnimationPlayer"]
 active = false
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeBlendTree_impnq")
@@ -407,20 +407,20 @@ parameters/Transition/current_state = "idle"
 parameters/Transition/transition_request = ""
 parameters/Transition/current_index = 0
 
-[node name="Hitbox" type="Area2D" parent="CharacterBody2D"]
+[node name="Hitbox" type="Area2D" parent="body"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body/Hitbox"]
 position = Vector2(-139, -73.5)
 shape = SubResource("RectangleShape2D_ioumt")
 disabled = true
 debug_color = Color(1, 0, 0.105882, 0.419608)
 
-[node name="useLaterInsteadOfCamera" type="RemoteTransform2D" parent="CharacterBody2D"]
+[node name="useLaterInsteadOfCamera" type="RemoteTransform2D" parent="body"]
 
-[node name="deleteLater" type="Camera2D" parent="CharacterBody2D"]
+[node name="deleteLater" type="Camera2D" parent="body"]
 zoom = Vector2(0.5, 0.5)
 
 [node name="level_system" parent="." instance=ExtResource("4_1ttua")]
 
-[connection signal="timeout" from="CharacterBody2D/DashTimer" to="CharacterBody2D" method="_on_dash_timer_timeout"]
-[connection signal="body_entered" from="CharacterBody2D/Hitbox" to="CharacterBody2D" method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="body/DashTimer" to="body" method="_on_dash_timer_timeout"]
+[connection signal="body_entered" from="body/Hitbox" to="body" method="_on_hitbox_body_entered"]

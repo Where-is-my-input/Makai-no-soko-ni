@@ -6,4 +6,7 @@ func action():
 	#var tween = create_tween()
 	#tween.tween_property(self, "position", parent.body.position, 0.2)#.set_trans(Tween.TRANS_SINE)
 	#await tween.finished
-	parent.body.velocity.x += 250
+
+func lunge():
+	var parent = get_parent()
+	parent.body.velocity.x += 2500 * parent.body.facing
