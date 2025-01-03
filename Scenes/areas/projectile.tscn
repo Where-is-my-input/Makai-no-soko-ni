@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://coto6ltakml6o"]
+
+[ext_resource type="Script" path="res://Scenes/areas/projectile.gd" id="1_vo7y1"]
+[ext_resource type="PackedScene" uid="uid://bl7627p04cq51" path="res://Scenes/areas/hitbox.tscn" id="2_0rpdy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8i66"]
+size = Vector2(0, 0)
+
+[node name="projectile" type="CharacterBody2D"]
+script = ExtResource("1_vo7y1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h8i66")
+disabled = true
+
+[node name="a2dHitbox" parent="." instance=ExtResource("2_0rpdy")]

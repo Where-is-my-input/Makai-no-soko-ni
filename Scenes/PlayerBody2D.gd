@@ -19,6 +19,7 @@ var dashes = 0
 var dashDuration = 5
 
 var damage = 10
+var hp:int = 10
 
 #states
 var isDashing = false
@@ -109,3 +110,12 @@ func _on_hitbox_body_entered(body):
 
 func returnToIdle():
 	animatedTree.set(A_State, "idle")
+
+func getHit(damage = 1):
+	hp -= damage
+	print("Hit for ", damage)
+	if hp <= 0:
+		death()
+
+func death():
+	print("Dead")
