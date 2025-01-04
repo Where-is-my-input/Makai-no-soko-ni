@@ -111,11 +111,14 @@ func _on_hitbox_body_entered(body):
 func returnToIdle():
 	animatedTree.set(A_State, "idle")
 
-func getHit(damage = 1):
+func getHit(damage = 1, knockback = true, knockbackDir = Vector2(2000, -500)):
+	if knockback: getKnockedback(knockbackDir)
 	hp -= damage
-	print("Hit for ", damage)
 	if hp <= 0:
 		death()
 
 func death():
 	print("Dead")
+
+func getKnockedback(knockbackDir = Vector2(20, -20)):
+	velocity = Vector2(knockbackDir.x, knockbackDir.y)

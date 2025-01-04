@@ -29,7 +29,6 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-
 func _on_ap_animation_finished(anim_name: StringName) -> void:
 	#currentAttack = null
 	tmr_cooldown.start(attackCooldown)
