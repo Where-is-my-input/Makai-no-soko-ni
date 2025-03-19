@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://dpq3rvv05f3a5"]
 
 [ext_resource type="PackedScene" uid="uid://dnxwhhyek2nes" path="res://assets/3D/Character Base.blend" id="1_whgru"]
-[ext_resource type="Script" path="res://Scenes/player/character_body_3d.gd" id="2_noga4"]
+[ext_resource type="Script" uid="uid://2kpf8pl0htpo" path="res://Scenes/player/character_body_3d.gd" id="2_noga4"]
 [ext_resource type="Texture2D" uid="uid://bbppqe043jjsl" path="res://assets/Sprites/Sprite.png" id="3_djgbc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_enm1q"]
@@ -200,9 +200,9 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fln2w"]
 _data = {
-"RESET": SubResource("Animation_gmcld"),
-"attack": SubResource("Animation_qivon"),
-"idle": SubResource("Animation_g3gn3")
+&"RESET": SubResource("Animation_gmcld"),
+&"attack": SubResource("Animation_qivon"),
+&"idle": SubResource("Animation_g3gn3")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lamru"]

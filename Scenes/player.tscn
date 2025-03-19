@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://c5euaw5jcse1y"]
 
-[ext_resource type="Script" path="res://Scenes/player/player.gd" id="1_ip5ye"]
-[ext_resource type="Script" path="res://Scenes/PlayerBody2D.gd" id="1_ve3qt"]
+[ext_resource type="Script" uid="uid://ba2r67pnhilhm" path="res://Scenes/player/player.gd" id="1_ip5ye"]
+[ext_resource type="Script" uid="uid://d0oibvgxtqbna" path="res://Scenes/PlayerBody2D.gd" id="1_ve3qt"]
 [ext_resource type="Texture2D" uid="uid://bbppqe043jjsl" path="res://assets/Sprites/Sprite.png" id="2_s3nqm"]
 [ext_resource type="PackedScene" uid="uid://c8mw8cyfugn4y" path="res://Scenes/system/level_system.tscn" id="4_1ttua"]
 
@@ -341,9 +341,9 @@ tracks/8/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7vriu"]
 _data = {
-"RESET": SubResource("Animation_4ci5v"),
-"attack0": SubResource("Animation_3i2nu"),
-"idle": SubResource("Animation_rajj3")
+&"RESET": SubResource("Animation_4ci5v"),
+&"attack0": SubResource("Animation_3i2nu"),
+&"idle": SubResource("Animation_rajj3")
 }
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_u488e"]
@@ -395,7 +395,7 @@ sprite_frames = SubResource("SpriteFrames_opqis")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="body"]
 libraries = {
-"": SubResource("AnimationLibrary_7vriu")
+&"": SubResource("AnimationLibrary_7vriu")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="body/AnimationPlayer"]

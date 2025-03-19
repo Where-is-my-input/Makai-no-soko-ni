@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d4aexgs6n4rl2"]
 
 [ext_resource type="PackedScene" uid="uid://bovqlon3fgh62" path="res://Scenes/collision_objects/platform.tscn" id="1_n4pp7"]
-[ext_resource type="Script" path="res://Scenes/collision_objects/illusion_platform.gd" id="2_s4c67"]
+[ext_resource type="Script" uid="uid://c33icormdxhe" path="res://Scenes/collision_objects/illusion_platform.gd" id="2_s4c67"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rc1j"]
 size = Vector2(80, 32)

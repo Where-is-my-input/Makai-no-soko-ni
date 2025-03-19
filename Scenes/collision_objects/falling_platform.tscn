@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://daccvelcfm2au"]
 
 [ext_resource type="PackedScene" uid="uid://bovqlon3fgh62" path="res://Scenes/collision_objects/platform.tscn" id="1_hiqhc"]
-[ext_resource type="Script" path="res://Scenes/collision_objects/falling_platform.gd" id="2_7p70p"]
+[ext_resource type="Script" uid="uid://dqrb10h0jiqq3" path="res://Scenes/collision_objects/falling_platform.gd" id="2_7p70p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwg1k"]
 size = Vector2(62, 8)

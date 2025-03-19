@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://bp0l628jvenqb"]
 
-[ext_resource type="Script" path="res://Scenes/bosses/boss.gd" id="1_cc80q"]
+[ext_resource type="Script" uid="uid://c3wbrqqltlnk4" path="res://Scenes/bosses/boss.gd" id="1_cc80q"]
 [ext_resource type="Texture2D" uid="uid://btd4mqoye2o4g" path="res://assets/wimiProductions.png" id="1_knd0e"]
-[ext_resource type="Script" path="res://Scenes/bosses/moves.gd" id="3_u616s"]
+[ext_resource type="Script" uid="uid://ckkwd4s8u2ot5" path="res://Scenes/bosses/moves.gd" id="3_u616s"]
 [ext_resource type="PackedScene" uid="uid://ds536tt1shwum" path="res://Scenes/bosses/alexandra/vira_lunge.tscn" id="4_ukc7i"]
 [ext_resource type="PackedScene" uid="uid://cswc87o23f4yc" path="res://Scenes/bosses/alexandra/alex_counter.tscn" id="5_bw851"]
 [ext_resource type="PackedScene" uid="uid://wjwl6xgdyimn" path="res://Scenes/bosses/alexandra/fireball.tscn" id="6_4vt3g"]
@@ -151,10 +151,10 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mxf5f"]
 _data = {
-"RESET": SubResource("Animation_dfxk2"),
-"counter": SubResource("Animation_juiuw"),
-"fireball": SubResource("Animation_q0qmg"),
-"lunge": SubResource("Animation_02yex")
+&"RESET": SubResource("Animation_dfxk2"),
+&"counter": SubResource("Animation_juiuw"),
+&"fireball": SubResource("Animation_q0qmg"),
+&"lunge": SubResource("Animation_02yex")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ymvms"]

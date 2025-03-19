@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cswc87o23f4yc"]
 
-[ext_resource type="Script" path="res://Scenes/bosses/alexandra/alex_counter.gd" id="1_fndi6"]
+[ext_resource type="Script" uid="uid://dyuf478oraao6" path="res://Scenes/bosses/alexandra/alex_counter.gd" id="1_fndi6"]
 
 [node name="alex_counter" type="Node"]
 script = ExtResource("1_fndi6")

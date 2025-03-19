@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://coto6ltakml6o"]
 
-[ext_resource type="Script" path="res://Scenes/areas/projectile.gd" id="1_vo7y1"]
+[ext_resource type="Script" uid="uid://bp814ra1bnh11" path="res://Scenes/areas/projectile.gd" id="1_vo7y1"]
 [ext_resource type="PackedScene" uid="uid://bl7627p04cq51" path="res://Scenes/areas/hitbox.tscn" id="2_0rpdy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8i66"]
