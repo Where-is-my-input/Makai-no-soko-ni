@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbka8nvb31rgl"]
+
+[ext_resource type="Script" uid="uid://cwg2kay80pku7" path="res://Scenes/UI/stage_select/stage_button.gd" id="1_1bbtw"]
+
+[node name="stage_button" type="Button"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_1bbtw")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

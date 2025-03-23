@@ -18,6 +18,7 @@ config/icon="res://Art/Sprites/Enemy.png"
 [autoload]
 
 Global="*res://Scenes/system/global.gd"
+LoadManager="*res://Scenes/autoload/load_manager.gd"
 
 [display]
 
