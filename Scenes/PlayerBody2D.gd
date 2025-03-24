@@ -36,6 +36,8 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("attack0"):
 		animatedTree.set(A_State, "attack")
+	elif Input.is_action_just_pressed("block"):
+		animatedTree.set(A_State, "block")
 	
 	if directionVector.x != 0:
 		setFacing(directionVector.x)
@@ -107,6 +109,10 @@ func setFacing(value):
 func _on_hitbox_body_entered(body):
 	if body.is_in_group("Enemy"):
 		body.takeDamage(damage)
+
+func _on_block_box_body_entered(body) -> void:
+	if body.is_in_group("Enemy"):
+		body.queue_free()
 
 func returnToIdle():
 	animatedTree.set(A_State, "idle")

@@ -186,7 +186,7 @@ ap = NodePath("../ap")
 
 [node name="ap" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_mxf5f")
+&"": SubResource("AnimationLibrary_mxf5f")
 }
 
 [node name="a2dHitbox" parent="." instance=ExtResource("7_301be")]
