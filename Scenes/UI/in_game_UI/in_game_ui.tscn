@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dq03aualu4bnx"]
+
+[ext_resource type="Script" uid="uid://cjdner5hm2a1k" path="res://Scenes/UI/in_game_UI/in_game_ui.gd" id="1_22fj2"]
+[ext_resource type="PackedScene" uid="uid://b2rm0a0r6wosf" path="res://Scenes/UI/health_bar/health_bar.tscn" id="1_p4x4x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_22fj2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6rx21"]
+bg_color = Color(0.781891, 0.552331, 0, 1)
+
+[sub_resource type="Theme" id="Theme_xmjcg"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_22fj2")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_6rx21")
+
+[node name="inGameUI" type="CanvasLayer"]
+script = ExtResource("1_22fj2")
+
+[node name="healthBar" parent="." instance=ExtResource("1_p4x4x")]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 212.0
+offset_bottom = 35.0
+
+[node name="xpBar" type="ProgressBar" parent="."]
+offset_left = 8.0
+offset_top = 35.0
+offset_right = 208.0
+offset_bottom = 39.0
+theme = SubResource("Theme_xmjcg")
+value = 50.0
+show_percentage = false

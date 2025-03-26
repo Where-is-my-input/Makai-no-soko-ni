@@ -7,6 +7,10 @@ var nextFrame = false
 		#queue_free()
 
 func _process(_delta):
+	
+	if Input.is_action_just_pressed("restart"):
+		get_tree().change_scene_to_file("res://Scenes/main.tscn")
+	
 	if get_tree().paused == false and nextFrame == true:
 		get_tree().paused = true
 

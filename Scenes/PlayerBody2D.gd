@@ -29,6 +29,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	animatedTree.set_deferred("active", true)
+	get_parent().updateHealth.emit(hp)
 
 func _physics_process(delta):
 	directionVector = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
@@ -112,6 +113,7 @@ func _on_hitbox_body_entered(body):
 
 func _on_block_box_body_entered(body) -> void:
 	if body.is_in_group("Enemy"):
+		print("blocked by player")
 		body.queue_free()
 
 func returnToIdle():
@@ -120,6 +122,7 @@ func returnToIdle():
 func getHit(damage = 1, knockback = true, knockbackDir = Vector2(2000, -500)):
 	if knockback: getKnockedback(knockbackDir)
 	hp -= damage
+	get_parent().updateHealth.emit(hp)
 	if hp <= 0:
 		death()
 
