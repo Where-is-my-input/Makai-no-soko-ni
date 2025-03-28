@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://rc3aggfpupcw"]
+
+[ext_resource type="Script" uid="uid://msndd0rcy2rb" path="res://Scenes/virtual_controller/virtual_controller.gd" id="1_dea7i"]
+
+[node name="virtualController" type="Node"]
+process_priority = -1
+script = ExtResource("1_dea7i")
+
+[node name="tmrJump" type="Timer" parent="."]
+one_shot = true
+
+[node name="tmrJumpRelease" type="Timer" parent="."]
+one_shot = true
+
+[node name="tmrAttack" type="Timer" parent="."]
+one_shot = true
+
+[node name="tmrDash" type="Timer" parent="."]
+one_shot = true
+
+[node name="tmrDashRelease" type="Timer" parent="."]
+one_shot = true

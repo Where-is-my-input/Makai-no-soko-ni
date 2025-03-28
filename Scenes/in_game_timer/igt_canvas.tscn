@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciawb2hlsxw1"]
+
+[ext_resource type="Script" uid="uid://b5ane6tpaewbv" path="res://node/in_game_timer/igt_canvas.gd" id="1_md8bq"]
+
+[node name="igt_canvas" type="CanvasLayer"]
+script = ExtResource("1_md8bq")
+
+[node name="ing_game_timer_control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="hbIGT" type="HBoxContainer" parent="ing_game_timer_control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="lblIGT" type="Label" parent="ing_game_timer_control/hbIGT"]
+layout_mode = 2

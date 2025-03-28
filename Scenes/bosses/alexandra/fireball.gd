@@ -21,7 +21,7 @@ func fire():
 	var dir = (parent.body.player.global_position - fireball.global_position).normalized()
 	fireball.global_rotation = dir.angle() + PI / 2.0
 	fireball.global_rotation = dir.angle() + PI / 2.0
-	fireball.direction = fireball.global_position.direction_to(parent.body.player.body.global_position) * Vector2(speed, speed)
+	fireball.direction = fireball.global_position.direction_to(parent.body.player.global_position) * Vector2(speed, speed)
 
 func _physics_process(delta: float) -> void:
 	if get_parent().body.velocity.y > 0:

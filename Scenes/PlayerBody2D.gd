@@ -4,6 +4,9 @@ extends CharacterBody2D
 @onready var hitbox = $Hitbox
 @onready var animatedTree = $AnimationPlayer/AnimationTree
 @onready var A_State = "parameters/Transition/transition_request"
+@onready var vc: Node = $components/virtualController
+
+signal updateHealth
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -1200.0
@@ -29,11 +32,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	animatedTree.set_deferred("active", true)
-	get_parent().updateHealth.emit(hp)
+	updateHealth.emit(hp)
 
 func _physics_process(delta):
-	directionVector = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
-	directionVector = directionVector.normalized()
+	var directionVector = vc.direction.normalized()
 	
 	if Input.is_action_just_pressed("attack0"):
 		animatedTree.set(A_State, "attack")
@@ -122,7 +124,7 @@ func returnToIdle():
 func getHit(damage = 1, knockback = true, knockbackDir = Vector2(2000, -500)):
 	if knockback: getKnockedback(knockbackDir)
 	hp -= damage
-	get_parent().updateHealth.emit(hp)
+	updateHealth.emit(hp)
 	if hp <= 0:
 		death()
 

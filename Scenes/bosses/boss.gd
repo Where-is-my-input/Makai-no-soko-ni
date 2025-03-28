@@ -1,7 +1,7 @@
 extends CharacterBody2D
 @onready var moves: Node = $moves
 
-@export var player:Node2D = null
+@export var player:CharacterBody2D = null
 @export var attackCooldown:float = 5.0
 const SPEED:float = 300.0
 @onready var tmr_cooldown: Timer = $tmrCooldown
@@ -14,7 +14,7 @@ var facing:int = 1
 
 func _physics_process(delta: float) -> void:
 	if player != null && currentAttack == null: 
-		if global_position.direction_to(player.body.global_position).x > 0 && facing != 1 || global_position.direction_to(player.body.global_position).x < 0 && facing != -1:
+		if global_position.direction_to(player.global_position).x > 0 && facing != 1 || global_position.direction_to(player.global_position).x < 0 && facing != -1:
 			facing *= -1
 			scale.x *= -1
 

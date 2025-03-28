@@ -9,5 +9,5 @@ func action():
 
 func lunge():
 	var parent = get_parent()
-	var distanceToPlayer = parent.body.global_position.distance_to(parent.body.player.body.global_position)
+	var distanceToPlayer = parent.body.global_position.distance_to(parent.body.player.global_position)
 	parent.body.velocity.x += 7 * distanceToPlayer * parent.body.facing
