@@ -6,3 +6,6 @@ func _init(maxV = 50, v = 50) -> void:
 
 func updateHealth(newValue):
 	value = newValue
+
+func setMaxHealth(v):
+	max_value = v

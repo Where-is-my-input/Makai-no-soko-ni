@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var animatedTree = $AnimationPlayer/AnimationTree
 @onready var A_State = "parameters/Transition/transition_request"
 @onready var vc: Node = $components/virtualController
+@onready var level_system: level_system = $components/level_system
+@onready var double_jump_lockout: Timer = $doubleJumpLockout
 
 signal updateHealth
 
@@ -22,6 +24,8 @@ var dashes = 0
 var dashDuration = 5
 
 var damage = 10
+
+var maxHp:int = 10
 var hp:int = 10
 
 #states
@@ -37,7 +41,7 @@ func _ready():
 func _physics_process(delta):
 	var directionVector = vc.direction.normalized()
 	
-	if Input.is_action_just_pressed("attack0"):
+	if vc.attack:
 		animatedTree.set(A_State, "attack")
 	elif Input.is_action_just_pressed("block"):
 		animatedTree.set(A_State, "block")
@@ -57,11 +61,11 @@ func _physics_process(delta):
 		land()
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump"):
+	if vc.jump:
 		jump()
 	
 	# Handle dash.
-	if Input.is_action_just_pressed("dash") && !isDashing && dash_timer.is_stopped():
+	if vc.dash && !isDashing && dash_timer.is_stopped():
 		dash()
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -89,7 +93,8 @@ func jump():
 	if is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		jumps += 1
-	elif maxJumps > jumps:
+		double_jump_lockout.start(0.2)
+	elif maxJumps > jumps && double_jump_lockout.is_stopped():
 		velocity.y = JUMP_VELOCITY / 1.2
 		jumps += 1
 
@@ -111,7 +116,8 @@ func setFacing(value):
 
 func _on_hitbox_body_entered(body):
 	if body.is_in_group("Enemy"):
-		body.takeDamage(damage)
+		if body.takeDamage(damage):
+			level_system.gainXP(body.xpValue)
 
 func _on_block_box_body_entered(body) -> void:
 	if body.is_in_group("Enemy"):

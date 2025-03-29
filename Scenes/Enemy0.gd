@@ -5,6 +5,7 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
+var xpValue = 5
 var hp = 20
 var facing = -1
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -24,6 +25,7 @@ func takeDamage(value):
 	hp -= value
 	if hp <= 0:
 		die()
+		return true
 
 func die():
 	queue_free()

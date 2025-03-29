@@ -1,6 +1,5 @@
-[gd_scene load_steps=20 format=3 uid="uid://c5euaw5jcse1y"]
+[gd_scene load_steps=19 format=3 uid="uid://c5euaw5jcse1y"]
 
-[ext_resource type="Script" uid="uid://ba2r67pnhilhm" path="res://Scenes/player/player.gd" id="1_ip5ye"]
 [ext_resource type="Script" uid="uid://d0oibvgxtqbna" path="res://Scenes/PlayerBody2D.gd" id="1_ve3qt"]
 [ext_resource type="Texture2D" uid="uid://bbppqe043jjsl" path="res://assets/Sprites/Sprite.png" id="2_s3nqm"]
 [ext_resource type="PackedScene" uid="uid://c8mw8cyfugn4y" path="res://Scenes/system/level_system.tscn" id="4_1ttua"]
@@ -526,6 +525,9 @@ debug_color = Color(0, 0.65098, 0.027451, 0.419608)
 [node name="DashTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="doubleJumpLockout" type="Timer" parent="."]
+one_shot = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, -96)
 scale = Vector2(0.2, 0.2)
@@ -564,10 +566,6 @@ debug_color = Color(0.000468793, 0.26186, 0.843528, 0.42)
 
 [node name="deleteLater" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
-
-[node name="Player" type="Node2D" parent="." node_paths=PackedStringArray("levelComponent")]
-script = ExtResource("1_ip5ye")
-levelComponent = NodePath("../components/level_system")
 
 [node name="components" type="Node" parent="."]
 
