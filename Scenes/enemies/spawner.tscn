@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2q3k8lq2jr5p"]
+
+[ext_resource type="Script" uid="uid://brund8l12n0ah" path="res://Scenes/enemies/spawner.gd" id="1_su8ka"]
+
+[node name="spawner" type="Node2D"]
+script = ExtResource("1_su8ka")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+scale = Vector2(9.6, 1.6)
+
+[node name="mobs" type="Node" parent="."]
+
+[node name="timerSpawn" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="timerSpawn" to="." method="_on_timer_spawn_timeout"]

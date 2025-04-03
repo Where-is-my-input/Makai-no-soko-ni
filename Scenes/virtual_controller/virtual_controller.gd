@@ -25,7 +25,7 @@ func _ready() -> void:
 	Global.debugToggleVcMode.connect(toggleMode)
 
 func toggleMode():
-	mode = 1 if mode == 0 else 1
+	mode = 1 if mode == 0 else 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
