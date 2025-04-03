@@ -1,12 +1,14 @@
 extends CharacterBody2D
 
+@export var vc:VirtualControllerClass = null
+
 @onready var dash_timer = $DashTimer
 @onready var hitbox = $Hitbox
 @onready var animatedTree = $AnimationPlayer/AnimationTree
 @onready var A_State = "parameters/Transition/transition_request"
-@onready var vc: Node = $components/virtualController
 @onready var level_system: level_system = $components/level_system
 @onready var double_jump_lockout: Timer = $doubleJumpLockout
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 signal updateHealth
 
@@ -23,8 +25,8 @@ var maxDashes = 1
 var dashes = 0
 var dashDuration = 5
 
-var damage = 10
-
+var attack:int = 10
+var defense:int = 1
 var maxHp:int = 10
 var hp:int = 10
 
@@ -34,20 +36,21 @@ var directionVector = Vector2()
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var aIdle = "idle"
+
 func _ready():
 	animatedTree.set_deferred("active", true)
 	updateHealth.emit(hp)
 
 func _physics_process(delta):
-	var directionVector = vc.direction.normalized()
-	
+	var directionVector = vc.direction#.normalized()
 	if vc.attack:
-		animatedTree.set(A_State, "attack")
-	elif Input.is_action_just_pressed("block"):
-		animatedTree.set(A_State, "block")
+		aIdle = "attack"
+	elif vc.block:
+		aIdle = "block"
 	
 	if directionVector.x != 0:
-		setFacing(directionVector.x)
+		setFacing(vc.direction.x)
 	
 	if !directionVector.x && !is_on_floor():
 		endDash()
@@ -61,17 +64,14 @@ func _physics_process(delta):
 		land()
 
 	# Handle jump.
-	if vc.jump:
+	if vc.jump && double_jump_lockout.is_stopped():
 		jump()
 	
 	# Handle dash.
 	if vc.dash && !isDashing && dash_timer.is_stopped():
 		dash()
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	elif (Input.get_action_strength("dash") > 0 || !is_on_floor()) && isDashing:
-			#velocity.x = facing * SPEED * 4
-			velocity.x = facing * (abs(velocity.x / SPEED) + SPEED) * 4
+	elif (vc.isDashHeld || !is_on_floor()) && isDashing:
+		velocity.x = facing * (abs(velocity.x / SPEED) + SPEED) * 4
 	elif directionVector.x:
 		velocity.x = directionVector.x * SPEED
 		isDashing = false
@@ -79,6 +79,10 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	setAnimation()
+
+func setAnimation():
+		animatedTree.set(A_State, aIdle)
 
 func dash():
 	if dashes < maxDashes:
@@ -116,16 +120,16 @@ func setFacing(value):
 
 func _on_hitbox_body_entered(body):
 	if body.is_in_group("Enemy"):
-		if body.takeDamage(damage):
+		if body.takeDamage(attack):
 			level_system.gainXP(body.xpValue)
 
 func _on_block_box_body_entered(body) -> void:
 	if body.is_in_group("Enemy"):
-		print("blocked by player")
 		body.queue_free()
 
 func returnToIdle():
-	animatedTree.set(A_State, "idle")
+	aIdle = "idle"
+	setAnimation()
 
 func getHit(damage = 1, knockback = true, knockbackDir = Vector2(2000, -500)):
 	if knockback: getKnockedback(knockbackDir)

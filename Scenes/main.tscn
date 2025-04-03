@@ -1,5 +1,6 @@
 [gd_scene load_steps=11 format=4 uid="uid://brpryaa6blx3x"]
 
+[ext_resource type="PackedScene" uid="uid://rc3aggfpupcw" path="res://Scenes/virtual_controller/virtual_controller.tscn" id="1_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://c5euaw5jcse1y" path="res://Scenes/player.tscn" id="1_tgdj8"]
 [ext_resource type="PackedScene" uid="uid://5c0emt8c5dxv" path="res://Scenes/Enemy0.tscn" id="2_hu37d"]
 [ext_resource type="PackedScene" uid="uid://daccvelcfm2au" path="res://Scenes/collision_objects/falling_platform.tscn" id="3_j3hri"]
@@ -8,16 +9,18 @@
 [ext_resource type="PackedScene" uid="uid://ciqg174sswpaw" path="res://Scenes/npcs/mob.tscn" id="6_ls3em"]
 [ext_resource type="PackedScene" uid="uid://d4aexgs6n4rl2" path="res://Scenes/collision_objects/illusion_platform.tscn" id="7_d3ab4"]
 [ext_resource type="PackedScene" uid="uid://bp0l628jvenqb" path="res://Scenes/bosses/boss.tscn" id="8_cdj2j"]
-[ext_resource type="PackedScene" uid="uid://kfwybxdlfnmi" path="res://system/debugger.tscn" id="9_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://dq03aualu4bnx" path="res://Scenes/UI/in_game_UI/in_game_ui.tscn" id="10_hptm8"]
 
 [node name="Main" type="Node2D"]
 
-[node name="inGameUI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("10_hptm8")]
-player = NodePath("../Player")
+[node name="virtualController" parent="." instance=ExtResource("1_d1ilt")]
 
-[node name="Player" parent="." instance=ExtResource("1_tgdj8")]
-position = Vector2(923, 939)
+[node name="Player" parent="virtualController" node_paths=PackedStringArray("vc") instance=ExtResource("1_tgdj8")]
+position = Vector2(7680, 976)
+vc = NodePath("..")
+
+[node name="inGameUI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("10_hptm8")]
+player = NodePath("../virtualController/Player")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_hu37d")]
 position = Vector2(1728, 904)
@@ -35,9 +38,8 @@ scale = Vector2(-1, 1)
 [node name="illusion_platform" parent="." instance=ExtResource("7_d3ab4")]
 position = Vector2(1824, 1156)
 
-[node name="boss" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_cdj2j")]
+[node name="boss" parent="." instance=ExtResource("8_cdj2j")]
 position = Vector2(8531, 849)
-player = NodePath("../Player")
 attackCooldown = 0.5
 
 [node name="platforms" type="Node" parent="."]
@@ -56,5 +58,3 @@ position = Vector2(3983, 888)
 
 [node name="falling_platform5" parent="platforms" instance=ExtResource("3_j3hri")]
 position = Vector2(4255, 888)
-
-[node name="debugger" parent="." instance=ExtResource("9_ynf5e")]

@@ -59,7 +59,6 @@ func _physics_process(delta):
 		land()
 
 	if Input.is_action_just_pressed("attack0"):
-		print("pressed")
 		aTree.set(A_State, "attack")
 
 	# Handle jump.
@@ -117,7 +116,6 @@ func setFacing(value):
 		scale.x *= -1
 
 func _on_hitbox_body_entered(body):
-	print("hit")
 	if body.is_in_group("Enemy"):
 		body.takeDamage(damage)
 
@@ -125,6 +123,5 @@ func returnToIdle():
 	aTree.set(A_State, "idle")
 
 func setHitboxDisabled(value = true):
-	print(value, " - disabled")
 	for c in hitbox.get_children():
 		c.set_deferred("disabled", value)

@@ -160,7 +160,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ymvms"]
 size = Vector2(0, 0)
 
-[node name="boss" type="CharacterBody2D"]
+[node name="boss" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 65536
 collision_mask = 65536
 script = ExtResource("1_cc80q")

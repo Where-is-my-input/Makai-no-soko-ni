@@ -5,3 +5,14 @@
 [node name="debugger" type="Node"]
 process_mode = 3
 script = ExtResource("1_m7ubt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="hContainer" type="HBoxContainer" parent="CanvasLayer/Panel"]
+offset_right = 40.0
+offset_bottom = 40.0

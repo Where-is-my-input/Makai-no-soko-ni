@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwd8p7l3a7biy"]
+
+[ext_resource type="Script" uid="uid://e3katfxpfans" path="res://system/input_viewer.gd" id="1_hgadg"]
+
+[node name="inputViewer" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_hgadg")
+
+[node name="box" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

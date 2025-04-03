@@ -3,9 +3,15 @@ extends CanvasLayer
 @export var player:Node2D
 @onready var health_bar: ProgressBar = $healthBar
 @onready var xp_bar: ProgressBar = $xpBar
+@onready var enemy_container: HBoxContainer = $enemyContainer
+
+const HEALTH_BAR = preload("res://Scenes/UI/health_bar/health_bar.tscn")
 
 func _ready() -> void:
-	await player.ready
+	#await player.ready
+	Global.setHpBar.connect(setNewHealthBar)
+	#Global.connect("setHpBar", setNewHealthBar)
+	player.level_system.connect("setHpBar", setNewHealthBar)
 	setXpBar()
 	player.level_system.connect("xpGained", updateXp)
 	player.level_system.connect("levelUp", setXpBar)
@@ -21,3 +27,10 @@ func updateHealth(newValue):
 
 func updateXp(v):
 	xp_bar.value = v
+
+func setNewHealthBar(node:CharacterBody2D):
+	var newHPBar = HEALTH_BAR.instantiate()
+	newHPBar.node = node
+	enemy_container.add_child(newHPBar)
+	node.hpBarTied = true
+	

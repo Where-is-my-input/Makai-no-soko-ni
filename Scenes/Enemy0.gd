@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name EnemyClass
 
 @export var enableGravity = false
 

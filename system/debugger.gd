@@ -8,6 +8,9 @@ var nextFrame = false
 
 func _process(_delta):
 	
+	if Input.is_action_just_pressed("Debug"):
+		Global.debugToggleVcMode.emit()
+	
 	if Input.is_action_just_pressed("restart"):
 		get_tree().change_scene_to_file("res://Scenes/main.tscn")
 	

@@ -1,6 +1,10 @@
 extends Node
 const DEBUGGER = preload("res://system/debugger.tscn")
 
+signal setHpBar
+
+signal debugToggleVcMode
+
 func _ready() -> void:
 	add_child(DEBUGGER.instantiate())
 

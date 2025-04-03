@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://msndd0rcy2rb" path="res://Scenes/virtual_controller/virtual_controller.gd" id="1_dea7i"]
 
 [node name="virtualController" type="Node"]
-process_priority = -1
 script = ExtResource("1_dea7i")
 
 [node name="tmrJump" type="Timer" parent="."]
@@ -19,4 +18,7 @@ one_shot = true
 one_shot = true
 
 [node name="tmrDashRelease" type="Timer" parent="."]
+one_shot = true
+
+[node name="tmrBlock" type="Timer" parent="."]
 one_shot = true
