@@ -17,7 +17,7 @@
 [node name="virtualController" parent="." instance=ExtResource("1_d1ilt")]
 
 [node name="Player" parent="virtualController" node_paths=PackedStringArray("vc") instance=ExtResource("1_tgdj8")]
-position = Vector2(208, 1088)
+position = Vector2(7872, 1008)
 vc = NodePath("..")
 
 [node name="inGameUI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("10_hptm8")]
@@ -36,8 +36,9 @@ scale = Vector2(-1, 1)
 [node name="illusion_platform" parent="." instance=ExtResource("7_d3ab4")]
 position = Vector2(1824, 1156)
 
-[node name="boss" parent="." instance=ExtResource("8_cdj2j")]
+[node name="boss" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_cdj2j")]
 position = Vector2(8531, 849)
+player = NodePath("../virtualController/Player")
 attackCooldown = 0.5
 
 [node name="platforms" type="Node" parent="."]

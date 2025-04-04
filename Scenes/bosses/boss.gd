@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var attackCooldown:float = 5.0
 const SPEED:float = 300.0
 @onready var tmr_cooldown: Timer = $tmrCooldown
+@onready var a_2d_hitbox: Area2D = $a2dHitbox
 
 #stats
 @export var attack:int = 5
@@ -13,7 +14,6 @@ const SPEED:float = 300.0
 @export var HP:int = 25
 
 var currentAttack = null
-var previousAttack = null
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var facing:int = 1
@@ -25,6 +25,7 @@ func _ready() -> void:
 	while !hpBarTied:
 		Global.setHpBar.emit(self)
 		await get_tree().create_timer(0.5).timeout
+	#a_2d_hitbox.attackSuccessful.connect(moves.attackSuccessful())
 
 #TODO Logic to prefer moves that were sucessful
 func _physics_process(delta: float) -> void:
@@ -35,8 +36,10 @@ func _physics_process(delta: float) -> void:
 				scale.x *= -1
 
 		if currentAttack == null:
-			currentAttack = moves.moves.pick_random()
-			if currentAttack == previousAttack: currentAttack = moves.moves.pick_random()
+			#currentAttack = moves.moves.pick_random()
+			#if currentAttack == previousAttack: currentAttack = moves.moves.pick_random()
+			#moves.nextAttack().action()
+			currentAttack = moves.nextAttack()
 			currentAttack.action()
 	
 	velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -51,7 +54,6 @@ func _on_ap_animation_finished(anim_name: StringName) -> void:
 	tmr_cooldown.start(attackCooldown)
 
 func _on_tmr_cooldown_timeout() -> void:
-	previousAttack = currentAttack
 	currentAttack = null
 
 func takeDamage(damageTaken = 1):

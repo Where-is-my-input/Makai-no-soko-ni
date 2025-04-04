@@ -201,4 +201,5 @@ debug_color = Color(0.99395, 0, 0.2298, 0.42)
 one_shot = true
 
 [connection signal="animation_finished" from="ap" to="." method="_on_ap_animation_finished"]
+[connection signal="attackSuccessful" from="a2dHitbox" to="moves" method="attackSuccessful"]
 [connection signal="timeout" from="tmrCooldown" to="." method="_on_tmr_cooldown_timeout"]

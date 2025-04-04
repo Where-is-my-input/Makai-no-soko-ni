@@ -2,8 +2,11 @@ extends Area2D
 
 @export var damage:int = 1
 
+signal attackSuccessful
+
 func _on_body_entered(body: Node2D) -> void:
-	if body.has_method("getHit"): 
+	if body.has_method("getHit"):
+		attackSuccessful.emit()
 		if "facing" in get_parent():
 			body.getHit(damage, Vector2(2500 * get_parent().facing, -2000))
 		else:
