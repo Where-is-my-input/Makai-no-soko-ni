@@ -12,6 +12,7 @@ const SPEED:float = 300.0
 @export var defense:int = 5
 @export var maxHp:int = 25
 @export var HP:int = 25
+@export var xpValue:int = 80
 
 var currentAttack = null
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")

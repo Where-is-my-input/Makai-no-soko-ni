@@ -36,6 +36,7 @@ var directionVector = Vector2()
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var hitstun:int = 0
 var aIdle = "idle"
 
 func _ready():
@@ -43,41 +44,43 @@ func _ready():
 	updateHealth.emit(hp)
 
 func _physics_process(delta):
-	var directionVector = vc.direction#.normalized()
-	if vc.attack:
-		aIdle = "attack"
-	elif vc.block:
-		aIdle = "block"
-	
-	if directionVector.x != 0:
-		setFacing(vc.direction.x)
-	
-	if !directionVector.x && !is_on_floor():
-		endDash()
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-	elif dash_timer.is_stopped():
-		isDashing = false
-	
-	if jumps > 0 && is_on_floor():
-		land()
+	if hitstun <= 0:
+		var directionVector = vc.direction#.normalized()
+		if vc.attack:
+			aIdle = "attack"
+		elif vc.block:
+			aIdle = "block"
+		
+		if directionVector.x != 0:
+			setFacing(vc.direction.x)
+		
+		if !directionVector.x && !is_on_floor():
+			endDash()
+		# Add the gravity.
+		if not is_on_floor():
+			velocity.y += gravity * delta
+		elif dash_timer.is_stopped():
+			isDashing = false
+		
+		if jumps > 0 && is_on_floor():
+			land()
 
-	# Handle jump.
-	if vc.jump && double_jump_lockout.is_stopped():
-		jump()
-	
-	# Handle dash.
-	if vc.dash && !isDashing && dash_timer.is_stopped():
-		dash()
-	elif (vc.isDashHeld || !is_on_floor()) && isDashing:
-		velocity.x = facing * (abs(velocity.x / SPEED) + SPEED) * 4
-	elif directionVector.x:
-		velocity.x = directionVector.x * SPEED
-		isDashing = false
+		# Handle jump.
+		if vc.jump && double_jump_lockout.is_stopped():
+			jump()
+		
+		# Handle dash.
+		if vc.dash && !isDashing && dash_timer.is_stopped():
+			dash()
+		elif (vc.isDashHeld || !is_on_floor()) && isDashing:
+			velocity.x = facing * (abs(velocity.x / SPEED) + SPEED) * 4
+		elif directionVector.x:
+			velocity.x = directionVector.x * SPEED
+			isDashing = false
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+		hitstun -= 1
 	move_and_slide()
 	setAnimation()
 
@@ -120,6 +123,7 @@ func setFacing(value):
 
 func _on_hitbox_body_entered(body):
 	if body.is_in_group("Enemy"):
+		level_system.gainXP(body.xpValue * 0.1)
 		if body.takeDamage(attack):
 			level_system.gainXP(body.xpValue)
 
@@ -132,6 +136,7 @@ func returnToIdle():
 	setAnimation()
 
 func getHit(damage = 1, knockback = true, knockbackDir = Vector2(2000, -500)):
+	hitstun = 15
 	if knockback: getKnockedback(knockbackDir)
 	hp -= damage
 	updateHealth.emit(hp)
@@ -142,4 +147,6 @@ func death():
 	print("Dead")
 
 func getKnockedback(knockbackDir = Vector2(20, -20)):
-	velocity = Vector2(knockbackDir.x, knockbackDir.y)
+	print(knockbackDir)
+	velocity = Vector2(knockbackDir.x * facing * -1, knockbackDir.y)
+	print(velocity)
