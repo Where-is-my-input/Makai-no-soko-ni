@@ -68,7 +68,7 @@ func _physics_process(delta):
 		# Handle jump.
 		if vc.jump && double_jump_lockout.is_stopped():
 			jump()
-		
+		print(isDashing, vc.dash, dash_timer.is_stopped())
 		# Handle dash.
 		if vc.dash && !isDashing && dash_timer.is_stopped():
 			dash()
@@ -81,6 +81,8 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 	else:
 		hitstun -= 1
+		if hitstun <= 0:
+			returnToIdle()
 	move_and_slide()
 	setAnimation()
 
@@ -132,8 +134,14 @@ func _on_block_box_body_entered(body) -> void:
 		body.queue_free()
 
 func returnToIdle():
+	stopDash()
 	aIdle = "idle"
 	setAnimation()
+
+func stopDash():
+	dashes = 0
+	endDash()
+	dash_timer.stop()
 
 func getHit(damage = 1, knockback = true, knockbackDir = Vector2(2000, -500)):
 	hitstun = 15
