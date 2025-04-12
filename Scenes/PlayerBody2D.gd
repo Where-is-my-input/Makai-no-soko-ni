@@ -16,15 +16,14 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -1200.0
 var facing = -1
 
-var level = 0
-var xp = 0
-var stamina = 100
 var maxJumps = 2
 var jumps = 0
 var maxDashes = 1
 var dashes = 0
 var dashDuration = 5
 
+#status
+var stamina:int = 100
 var attack:int = 10
 var defense:int = 1
 var maxHp:int = 10
@@ -42,6 +41,7 @@ var aIdle = "idle"
 func _ready():
 	animatedTree.set_deferred("active", true)
 	updateHealth.emit(hp)
+	level_system.levelUp.connect(levelUp)
 
 func _physics_process(delta):
 	if hitstun <= 0:
@@ -68,7 +68,6 @@ func _physics_process(delta):
 		# Handle jump.
 		if vc.jump && double_jump_lockout.is_stopped():
 			jump()
-		print(isDashing, vc.dash, dash_timer.is_stopped())
 		# Handle dash.
 		if vc.dash && !isDashing && dash_timer.is_stopped():
 			dash()
@@ -96,8 +95,8 @@ func dash():
 		if !is_on_floor():
 			dashes += 1
 
-func jump():
-	if !is_on_floor():
+func jump(cancelDash = true):
+	if !is_on_floor() && cancelDash:
 		isDashing = false
 	if is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -155,6 +154,11 @@ func death():
 	print("Dead")
 
 func getKnockedback(knockbackDir = Vector2(20, -20)):
-	print(knockbackDir)
 	velocity = Vector2(knockbackDir.x * facing * -1, knockbackDir.y)
-	print(velocity)
+
+func levelUp(newLevel):
+	stamina = level_system.getStamina()
+	attack = level_system.getAttack()
+	defense = level_system.getDefense()
+	maxHp = level_system.getHP()
+	hp = maxHp

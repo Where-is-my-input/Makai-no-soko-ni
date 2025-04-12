@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://c5euaw5jcse1y"]
+[gd_scene load_steps=21 format=3 uid="uid://c5euaw5jcse1y"]
 
 [ext_resource type="Script" uid="uid://d0oibvgxtqbna" path="res://Scenes/PlayerBody2D.gd" id="1_ve3qt"]
 [ext_resource type="Texture2D" uid="uid://bbppqe043jjsl" path="res://assets/Sprites/Sprite.png" id="2_s3nqm"]
 [ext_resource type="Texture2D" uid="uid://djeowsvnpy6jy" path="res://assets/Sprites/Geovanna/frame1.png" id="3_fkybt"]
 [ext_resource type="PackedScene" uid="uid://c8mw8cyfugn4y" path="res://Scenes/system/level_system.tscn" id="4_1ttua"]
 [ext_resource type="Texture2D" uid="uid://bknv273x1w31v" path="res://assets/Sprites/Geovanna/frame2.png" id="4_x3wgy"]
+[ext_resource type="Script" uid="uid://c7usg4dos6bv1" path="res://system/camera.gd" id="6_x3wgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0yss"]
 size = Vector2(76, 193)
@@ -644,6 +645,7 @@ debug_color = Color(0.000468793, 0.26186, 0.843528, 0.42)
 
 [node name="deleteLater" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
+script = ExtResource("6_x3wgy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

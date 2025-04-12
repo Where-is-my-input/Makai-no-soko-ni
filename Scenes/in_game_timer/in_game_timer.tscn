@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://juugg1lfuceg"]
 
-[ext_resource type="Script" uid="uid://b7m5qf01wq2j1" path="res://node/in_game_timer.gd" id="1_susjc"]
+[ext_resource type="Script" uid="uid://d0040hat2n5br" path="res://Scenes/in_game_timer/in_game_timer.gd" id="1_susjc"]
 
 [node name="in_game_timer" type="Node"]
 script = ExtResource("1_susjc")

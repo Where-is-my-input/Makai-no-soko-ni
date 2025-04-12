@@ -7,12 +7,25 @@ process_mode = 3
 script = ExtResource("1_m7ubt")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="Container" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -208.0
+offset_top = 288.0
+offset_bottom = 648.0
+grow_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Container"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+alignment = 1
 
-[node name="hContainer" type="HBoxContainer" parent="CanvasLayer/Panel"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="lblIgt" type="Label" parent="CanvasLayer/Container/VBoxContainer"]
+layout_mode = 2
+text = "InGameTimer"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -4,6 +4,8 @@ const DEBUGGER = preload("res://system/debugger.tscn")
 signal setHpBar
 
 signal debugToggleVcMode
+signal debugZoomIn
+signal debugZoomOut
 
 func _ready() -> void:
 	add_child(DEBUGGER.instantiate())
