@@ -17,7 +17,7 @@
 [node name="virtualController" parent="." instance=ExtResource("1_d1ilt")]
 
 [node name="Player" parent="virtualController" node_paths=PackedStringArray("vc") instance=ExtResource("1_tgdj8")]
-position = Vector2(7872, 1008)
+position = Vector2(1424, 928)
 vc = NodePath("..")
 
 [node name="inGameUI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("10_hptm8")]
