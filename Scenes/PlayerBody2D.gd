@@ -124,6 +124,7 @@ func setFacing(value):
 
 func _on_hitbox_body_entered(body):
 	if body.is_in_group("Enemy"):
+		Global.hitstop.emit(0.15)
 		level_system.gainXP(body.xpValue * 0.1)
 		if body.takeDamage(attack):
 			level_system.gainXP(body.xpValue)
