@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 signal updateHealth
+signal updateStacks
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -1200.0
@@ -22,12 +23,13 @@ var maxDashes = 1
 var dashes = 0
 var dashDuration = 5
 
-#status
+#stats
 var stamina:int = 100
 var attack:int = 10
 var defense:int = 1
 var maxHp:int = 10
 var hp:int = 10
+var stacks:int = 0
 
 #states
 var isDashing = false
@@ -124,14 +126,22 @@ func setFacing(value):
 
 func _on_hitbox_body_entered(body):
 	if body.is_in_group("Enemy"):
-		Global.hitstop.emit(0.15)
-		level_system.gainXP(body.xpValue * 0.1)
-		if body.takeDamage(attack):
-			level_system.gainXP(body.xpValue)
+		hitEffects(body)
 
 func _on_block_box_body_entered(body) -> void:
-	if body.is_in_group("Enemy"):
+	if body.is_in_group("Projectile"):
+		stacks += 1 #TODO body.attackPower or something like this
+		updateStacks.emit(stacks)
 		body.queue_free()
+	elif body.is_in_group("Enemy"):
+		hitEffects(body, 0.2, attack * 0.25, Global.DamageType.PHYSICAL, true)
+
+func hitEffects(body, hitstop = 0.15, damageDealt = attack, damageType = Global.DamageType.PHYSICAL, isStagger = false):
+	Global.hitstop.emit(hitstop)
+	level_system.gainXP(body.xpValue * 0.1)
+	if body.takeDamage(damageDealt, damageType, isStagger):
+		level_system.gainXP(body.xpValue)
+	
 
 func returnToIdle():
 	stopDash()

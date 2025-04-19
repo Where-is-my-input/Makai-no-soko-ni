@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var health_bar: ProgressBar = $healthBar
 @onready var xp_bar: ProgressBar = $xpBar
 @onready var enemy_container: HBoxContainer = $enemyContainer
+@onready var tpb_stacks: TextureProgressBar = $tpbStacks
 
 const HEALTH_BAR = preload("res://Scenes/UI/health_bar/health_bar.tscn")
 
@@ -17,6 +18,7 @@ func _ready() -> void:
 	player.level_system.connect("levelUp", setXpBar)
 	health_bar.setMaxHealth(player.maxHp)
 	player.connect("updateHealth", updateHealth)
+	player.connect("updateStacks", updateStacks)
 
 func setXpBar():
 	xp_bar.max_value = player.level_system.xpNeeded()
@@ -34,3 +36,5 @@ func setNewHealthBar(node:CharacterBody2D):
 	enemy_container.add_child(newHPBar)
 	node.hpBarTied = true
 	
+func updateStacks(value = 1):
+	tpb_stacks.value = value

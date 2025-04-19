@@ -10,6 +10,12 @@ signal debugZoomOut
 
 var stage:Node2D = null
 
+enum DamageType {
+	PHYSICAL,
+	MAGIC
+	#STAGGER
+}
+
 func _ready() -> void:
 	add_child(DEBUGGER.instantiate())
 	hitstop.connect(setHitstop)
@@ -29,9 +35,7 @@ func setHitstop(hitstopAmount:float = 10.0):
 		#stage.set_physics_process(false)
 		get_tree().paused = true
 		#process_mode = Node.PROCESS_MODE_DISABLED
-		print(hitstopAmount)
 		await get_tree().create_timer(hitstopAmount).timeout
-		print("timeout")
 		#process_mode = Node.PROCESS_MODE_ALWAYS
 		#stage.set_process(true)
 		#stage.set_physics_process(true)

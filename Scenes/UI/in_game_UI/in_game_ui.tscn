@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dq03aualu4bnx"]
+[gd_scene load_steps=7 format=3 uid="uid://dq03aualu4bnx"]
 
 [ext_resource type="Script" uid="uid://cjdner5hm2a1k" path="res://Scenes/UI/in_game_UI/in_game_ui.gd" id="1_22fj2"]
 [ext_resource type="PackedScene" uid="uid://b2rm0a0r6wosf" path="res://Scenes/UI/health_bar/health_bar.tscn" id="1_p4x4x"]
+[ext_resource type="Texture2D" uid="uid://63pt46lptvd2" path="res://icon.svg" id="3_6rx21"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_22fj2"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -46,3 +47,13 @@ grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 alignment = 1
+
+[node name="tpbStacks" type="TextureProgressBar" parent="."]
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 455.0
+offset_bottom = 176.0
+scale = Vector2(0.34, 0.34)
+max_value = 10.0
+value = 1.0
+texture_progress = ExtResource("3_6rx21")
