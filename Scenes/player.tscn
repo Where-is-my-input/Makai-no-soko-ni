@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://c5euaw5jcse1y"]
+[gd_scene load_steps=22 format=3 uid="uid://c5euaw5jcse1y"]
 
 [ext_resource type="Script" uid="uid://d0oibvgxtqbna" path="res://Scenes/PlayerBody2D.gd" id="1_ve3qt"]
 [ext_resource type="Texture2D" uid="uid://bbppqe043jjsl" path="res://assets/Sprites/Sprite.png" id="2_s3nqm"]
+[ext_resource type="PackedScene" uid="uid://b14r78p7xt27n" path="res://Scenes/crest_system/crest_system.tscn" id="3_3smsa"]
 [ext_resource type="Texture2D" uid="uid://djeowsvnpy6jy" path="res://assets/Sprites/Geovanna/frame1.png" id="3_fkybt"]
 [ext_resource type="PackedScene" uid="uid://c8mw8cyfugn4y" path="res://Scenes/system/level_system.tscn" id="4_1ttua"]
 [ext_resource type="Texture2D" uid="uid://bknv273x1w31v" path="res://assets/Sprites/Geovanna/frame2.png" id="4_x3wgy"]
@@ -606,6 +607,8 @@ process_priority = -5
 process_physics_priority = -5
 
 [node name="level_system" parent="components" instance=ExtResource("4_1ttua")]
+
+[node name="crest_system" parent="components" instance=ExtResource("3_3smsa")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -82)

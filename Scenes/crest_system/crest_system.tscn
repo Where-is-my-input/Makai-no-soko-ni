@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b14r78p7xt27n"]
+
+[ext_resource type="Script" uid="uid://43d7bqh2v2pm" path="res://Scenes/crest_system/crest_system.gd" id="1_dc383"]
+
+[node name="crest_system" type="Node"]
+script = ExtResource("1_dc383")
