@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Makai no soko ni"
-run/main_scene="res://Scenes/main.tscn"
+run/main_scene="uid://cs87sly5qy386"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Art/Sprites/Enemy.png"
 

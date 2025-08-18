@@ -22,7 +22,7 @@ func _process(_delta):
 		Global.debugZoomOut.emit()
 	
 	if Input.is_action_just_pressed("restart"):
-		get_tree().change_scene_to_file("res://Scenes/main.tscn")
+		get_tree().change_scene_to_file("res://Scenes/UI/main_menu/main_menu.tscn")
 	
 	if get_tree().paused == false and nextFrame == true:
 		get_tree().paused = true

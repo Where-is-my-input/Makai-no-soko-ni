@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dn3ls1672p0jb"]
+
+[ext_resource type="PackedScene" uid="uid://w82y72hxqnnk" path="res://Scenes/stages/intro/intro.tscn" id="1_chdty"]
+[ext_resource type="PackedScene" uid="uid://0tmrovju8ti7" path="res://Scenes/stages/remi/remiStage.tscn" id="2_o5r26"]
+[ext_resource type="PackedScene" uid="uid://c5euaw5jcse1y" path="res://Scenes/player.tscn" id="3_uc0d0"]
+[ext_resource type="PackedScene" uid="uid://rc3aggfpupcw" path="res://Scenes/virtual_controller/virtual_controller.tscn" id="4_f151s"]
+
+[node name="world" type="Node2D"]
+
+[node name="intro" parent="." instance=ExtResource("1_chdty")]
+
+[node name="remiStage" parent="." instance=ExtResource("2_o5r26")]
+position = Vector2(3584, 576)
+
+[node name="body" parent="." node_paths=PackedStringArray("vc") instance=ExtResource("3_uc0d0")]
+position = Vector2(602, 479)
+vc = NodePath("../virtualController")
+
+[node name="virtualController" parent="." instance=ExtResource("4_f151s")]

@@ -14,7 +14,7 @@ signal updateHealth
 signal updateStacks
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -1200.0
+const JUMP_VELOCITY = -1400.0
 var facing = -1
 
 var maxJumps = 2
@@ -70,6 +70,8 @@ func _physics_process(delta):
 		# Handle jump.
 		if vc.jump && double_jump_lockout.is_stopped():
 			jump()
+		elif vc.jumpRelease:
+			jumpRelease()
 		# Handle dash.
 		if vc.dash && !isDashing && dash_timer.is_stopped():
 			dash()
@@ -107,6 +109,10 @@ func jump(cancelDash = true):
 	elif maxJumps > jumps && double_jump_lockout.is_stopped():
 		velocity.y = JUMP_VELOCITY / 1.2
 		jumps += 1
+
+func jumpRelease():
+	if !is_on_floor() && velocity.y < 0:
+		velocity.y = 0
 
 func endDash():
 	isDashing = false
