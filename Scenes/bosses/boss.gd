@@ -57,7 +57,7 @@ func _on_ap_animation_finished(anim_name: StringName) -> void:
 func _on_tmr_cooldown_timeout() -> void:
 	currentAttack = null
 
-func takeDamage(damageTaken = 1):
+func takeDamage(damageTaken = 1, damageType = Global.DamageType.PHYSICAL, isStagger = false):
 	HP -= damageTaken - defense if damageTaken - defense > 0 else 1
 	updateHealth.emit(HP)
 	if HP <= 0:

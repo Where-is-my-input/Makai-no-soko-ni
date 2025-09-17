@@ -8,6 +8,9 @@ signal debugToggleVcMode
 signal debugZoomIn
 signal debugZoomOut
 
+var debugSpeed:float = 300.0
+var debugJumpSpeed:float = -1400.0
+
 var stage:Node2D = null
 
 enum DamageType {

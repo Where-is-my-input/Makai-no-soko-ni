@@ -29,3 +29,14 @@ layout_mode = 2
 text = "InGameTimer"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="leSpeed" type="LineEdit" parent="CanvasLayer/Container/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="leJump" type="LineEdit" parent="CanvasLayer/Container/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[connection signal="text_changed" from="CanvasLayer/Container/VBoxContainer/leSpeed" to="." method="_on_le_speed_text_changed"]
+[connection signal="text_changed" from="CanvasLayer/Container/VBoxContainer/leJump" to="." method="_on_le_jump_text_changed"]

@@ -34,4 +34,4 @@ func attackFailed():
 
 func getRandomMove() -> int:
 	#return randi_range(0, moveCount)
-	return moves.pick_random()
+	return moves.pick_random() if !moves.is_empty() else 0

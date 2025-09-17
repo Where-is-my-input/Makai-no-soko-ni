@@ -13,8 +13,8 @@ extends CharacterBody2D
 signal updateHealth
 signal updateStacks
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -1400.0
+var SPEED = 300.0
+var JUMP_VELOCITY = -1400.0
 var facing = -1
 
 var maxJumps = 2
@@ -46,6 +46,8 @@ func _ready():
 	level_system.levelUp.connect(levelUp)
 
 func _physics_process(delta):
+	SPEED = Global.debugSpeed
+	JUMP_VELOCITY = Global.debugJumpSpeed
 	if hitstun <= 0:
 		var directionVector = vc.direction#.normalized()
 		if vc.attack:
