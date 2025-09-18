@@ -34,6 +34,7 @@ import/blender/enabled=false
 
 block="player group that blocks"
 Enemy=""
+Projectile=""
 
 [input]
 

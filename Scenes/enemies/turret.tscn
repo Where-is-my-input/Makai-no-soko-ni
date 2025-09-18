@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcn51822r3ndn"]
+
+[ext_resource type="Texture2D" uid="uid://63pt46lptvd2" path="res://icon.svg" id="1_f1alc"]
+[ext_resource type="Script" uid="uid://wgavhplf3kxf" path="res://Scenes/enemies/turret.gd" id="1_hw07i"]
+
+[node name="turret" type="Node2D"]
+script = ExtResource("1_hw07i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("1_f1alc")
+
+[node name="tmrFireRate" type="Timer" parent="."]
+
+[connection signal="timeout" from="tmrFireRate" to="." method="_on_tmr_fire_rate_timeout"]
