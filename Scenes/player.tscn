@@ -588,6 +588,7 @@ animation = &"block"
 animation = &"idle"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_impnq"]
+nodes/output/position = Vector2(1120, 140)
 nodes/Transition/node = SubResource("AnimationNodeTransition_u488e")
 nodes/Transition/position = Vector2(840, 60)
 nodes/attack0/node = SubResource("AnimationNodeAnimation_uju1a")
@@ -596,8 +597,7 @@ nodes/block/node = SubResource("AnimationNodeAnimation_vgqql")
 nodes/block/position = Vector2(520, 360)
 nodes/idle/node = SubResource("AnimationNodeAnimation_suig6")
 nodes/idle/position = Vector2(520, 40)
-nodes/output/position = Vector2(1120, 140)
-node_connections = [&"Transition", 0, &"idle", &"Transition", 1, &"attack0", &"Transition", 2, &"block", &"output", 0, &"Transition"]
+node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"idle", &"Transition", 1, &"attack0", &"Transition", 2, &"block"]
 
 [node name="body" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_ve3qt")
@@ -666,4 +666,5 @@ parameters/Transition/current_index = 0
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="area_entered" from="blockBox" to="." method="_on_block_box_area_entered"]
 [connection signal="body_entered" from="blockBox" to="." method="_on_block_box_body_entered"]

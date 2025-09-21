@@ -32,13 +32,17 @@ func xpNeeded():
 	return (level**xpExponential) - (level^level + level * level) + CONST_XP
 
 func getStamina() -> int:
+	@warning_ignore("narrowing_conversion")
 	return sqrt(level) + 100
 	
 func getDefense() -> int:
+	@warning_ignore("narrowing_conversion")
 	return sqrt(level) + 1
 	
 func getAttack() -> int:
+	@warning_ignore("narrowing_conversion")
 	return sqrt(level) + 10
 	
 func getHP() -> int:
+	@warning_ignore("narrowing_conversion")
 	return sqrt(level) + 10

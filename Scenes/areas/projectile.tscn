@@ -17,7 +17,7 @@ direction = Vector2(2000, 0)
 shape = SubResource("RectangleShape2D_h8i66")
 disabled = true
 
-[node name="a2dHitbox" parent="." instance=ExtResource("2_0rpdy")]
+[node name="a2dHitbox" parent="." groups=["Projectile"] instance=ExtResource("2_0rpdy")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="a2dHitbox"]
 shape = SubResource("RectangleShape2D_haoxq")
@@ -33,6 +33,7 @@ texture = ExtResource("3_gyssg")
 [node name="tmrDspawn" type="Timer" parent="VisibleOnScreenNotifier2D"]
 one_shot = true
 
+[connection signal="blocked" from="a2dHitbox" to="." method="_on_a_2d_hitbox_blocked"]
 [connection signal="body_entered" from="a2dHitbox" to="." method="_on_a_2d_hitbox_body_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

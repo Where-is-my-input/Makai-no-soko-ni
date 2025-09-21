@@ -33,7 +33,7 @@ var stacks:int = 0
 
 #states
 var isDashing = false
-var directionVector = Vector2()
+#var directionVector = Vector2()
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -144,7 +144,7 @@ func _on_block_box_body_entered(body) -> void:
 	elif body.is_in_group("Enemy"):
 		hitEffects(body, 0.2, attack * 0.25, Global.DamageType.PHYSICAL, true)
 
-func hitEffects(body, hitstop = 0.15, damageDealt = attack, damageType = Global.DamageType.PHYSICAL, isStagger = false):
+func hitEffects(body, hitstop:float = 0.15, damageDealt:float = attack, damageType = Global.DamageType.PHYSICAL, isStagger = false):
 	Global.hitstop.emit(hitstop)
 	level_system.gainXP(body.xpValue * 0.1)
 	if body.takeDamage(damageDealt, damageType, isStagger):
@@ -181,3 +181,13 @@ func levelUp(newLevel):
 	defense = level_system.getDefense()
 	maxHp = level_system.getHP()
 	hp = maxHp
+
+
+func _on_block_box_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Projectile"):
+		stacks += 1 #TODO body.attackPower or something like this
+		updateStacks.emit(stacks)
+		if area.has_method("emitBlocked"): 
+			area.emitBlocked()
+		else:
+			area.queue_free()

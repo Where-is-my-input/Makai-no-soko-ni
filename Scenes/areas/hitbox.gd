@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var damage:int = 1
+signal blocked
 
 signal attackSuccessful
 
@@ -19,3 +20,6 @@ func _on_area_entered(area: Area2D) -> void:
 func disable():
 	for c in get_children():
 		c.set_deferred("disabled", true)
+
+func emitBlocked():
+	blocked.emit()
