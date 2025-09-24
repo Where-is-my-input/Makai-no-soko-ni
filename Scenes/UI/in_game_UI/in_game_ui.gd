@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var xp_bar: ProgressBar = $xpBar
 @onready var enemy_container: HBoxContainer = $enemyContainer
 @onready var tpb_stacks: TextureProgressBar = $tpbStacks
+@onready var lbl_level: Label = $lblLevel
 
 const HEALTH_BAR = preload("res://Scenes/UI/health_bar/health_bar.tscn")
 
@@ -15,10 +16,15 @@ func _ready() -> void:
 	player.level_system.connect("setHpBar", setNewHealthBar)
 	setXpBar()
 	player.level_system.connect("xpGained", updateXp)
-	player.level_system.connect("levelUp", setXpBar)
+	player.level_system.connect("levelUp", levelUp)
 	health_bar.setMaxHealth(player.maxHp)
 	player.connect("updateHealth", updateHealth)
 	player.connect("updateStacks", updateStacks)
+	lbl_level.text = str(player.getLevel())
+
+func levelUp(level):
+	lbl_level.text = str(level)
+	setXpBar()
 
 func setXpBar():
 	xp_bar.max_value = player.level_system.xpNeeded()

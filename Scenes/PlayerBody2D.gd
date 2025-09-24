@@ -175,13 +175,15 @@ func death():
 func getKnockedback(knockbackDir = Vector2(20, -20)):
 	velocity = Vector2(knockbackDir.x * facing * -1, knockbackDir.y)
 
-func levelUp(newLevel):
+func levelUp():
 	stamina = level_system.getStamina()
 	attack = level_system.getAttack()
 	defense = level_system.getDefense()
 	maxHp = level_system.getHP()
 	hp = maxHp
 
+func getLevel():
+	return level_system.level
 
 func _on_block_box_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Projectile"):
@@ -189,5 +191,9 @@ func _on_block_box_area_entered(area: Area2D) -> void:
 		updateStacks.emit(stacks)
 		if area.has_method("emitBlocked"): 
 			area.emitBlocked()
+			blockEffects(.15)
 		else:
 			area.queue_free()
+
+func blockEffects(hitstop):
+	Global.hitstop.emit(hitstop)
