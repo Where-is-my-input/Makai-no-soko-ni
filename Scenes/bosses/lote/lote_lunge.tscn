@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8towtrgpbw4m"]
+
+[ext_resource type="Script" uid="uid://m1pkrh3hhlyf" path="res://Scenes/bosses/lote/lote_lunge.gd" id="1_ka7ud"]
+
+[node name="loteLunge" type="Node"]
+script = ExtResource("1_ka7ud")

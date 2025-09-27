@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://s4qa87etbg2y"]
+
+[ext_resource type="Script" uid="uid://co4p7nikyeyxv" path="res://Scenes/crest_system/core.gd" id="1_treki"]
+
+[node name="Core" type="Node"]
+script = ExtResource("1_treki")

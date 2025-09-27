@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var animatedTree = $AnimationPlayer/AnimationTree
 @onready var A_State = "parameters/Transition/transition_request"
 @onready var level_system: level_system = $components/level_system
+@onready var crest_system: Node = $components/crest_system
 @onready var double_jump_lockout: Timer = $doubleJumpLockout
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -75,15 +76,16 @@ func _physics_process(delta):
 		elif vc.jumpRelease:
 			jumpRelease()
 		# Handle dash.
+		var speedModified = crest_system.speedModifier(SPEED) #TODO create a function to set the modified speed when finishing equiping the crest
 		if vc.dash && !isDashing && dash_timer.is_stopped():
 			dash()
 		elif (vc.isDashHeld || !is_on_floor()) && isDashing:
-			velocity.x = facing * (abs(velocity.x / SPEED) + SPEED) * 4
+			velocity.x = facing * (abs(velocity.x / speedModified) + speedModified) * 4
 		elif directionVector.x:
-			velocity.x = directionVector.x * SPEED
+			velocity.x = directionVector.x * speedModified
 			isDashing = false
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.x = move_toward(velocity.x, 0, speedModified)
 	else:
 		hitstun -= 1
 		if hitstun <= 0:
@@ -146,9 +148,10 @@ func _on_block_box_body_entered(body) -> void:
 
 func hitEffects(body, hitstop:float = 0.15, damageDealt:float = attack, damageType = Global.DamageType.PHYSICAL, isStagger = false):
 	Global.hitstop.emit(hitstop)
-	level_system.gainXP(body.xpValue * 0.1)
+	level_system.gainXP(crest_system.gainXP(body.xpValue * 0.1))
+	damageDealt = crest_system.returnDamageDealt(damageDealt, 0) #TODO Combo counter
 	if body.takeDamage(damageDealt, damageType, isStagger):
-		level_system.gainXP(body.xpValue)
+		level_system.gainXP(crest_system.gainXP(body.xpValue))
 	
 
 func returnToIdle():
@@ -162,6 +165,8 @@ func stopDash():
 	dash_timer.stop()
 
 func getHit(damage = 1, knockback = true, knockbackDir = Vector2(2000, -500)):
+	var damageTakenCrestModified = crest_system.returnDamageTaken()
+	damage = damageTakenCrestModified if damageTakenCrestModified > 0 else damage
 	hitstun = 15
 	if knockback: getKnockedback(knockbackDir)
 	hp -= damage
@@ -171,6 +176,7 @@ func getHit(damage = 1, knockback = true, knockbackDir = Vector2(2000, -500)):
 
 func death():
 	print("Dead")
+	if crest_system.isHardcore(): print("Hardcore se fodeo")
 
 func getKnockedback(knockbackDir = Vector2(20, -20)):
 	velocity = Vector2(knockbackDir.x * facing * -1, knockbackDir.y)

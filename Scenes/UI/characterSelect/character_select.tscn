@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://bpuel3qwyq3ls"]
+
+[node name="CharacterSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="lblChar" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Select your character"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Character" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+alignment = 1
+
+[node name="btnCecilia" type="Button" parent="VBoxContainer/Character"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+text = "Cc"
+
+[node name="btnGeovanna" type="Button" parent="VBoxContainer/Character"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+text = "Geo"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="lblCrests" type="Label" parent="VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Crests"
+horizontal_alignment = 1
+
+[node name="crestCores" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="btnBand" type="Button" parent="VBoxContainer/VBoxContainer2/crestCores"]
+layout_mode = 2
+text = "Band"
+
+[node name="btnFragile" type="Button" parent="VBoxContainer/VBoxContainer2/crestCores"]
+layout_mode = 2
+text = "Fragile"
+
+[node name="btnEver" type="Button" parent="VBoxContainer/VBoxContainer2/crestCores"]
+layout_mode = 2
+text = "Ever"
+
+[node name="btnHitless" type="Button" parent="VBoxContainer/VBoxContainer2/crestCores"]
+layout_mode = 2
+text = "Hitless"
+
+[node name="btnKudos" type="Button" parent="VBoxContainer/VBoxContainer2/crestCores"]
+layout_mode = 2
+text = "Kudos"

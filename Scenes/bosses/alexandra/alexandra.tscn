@@ -1,9 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://bp0l628jvenqb"]
+[gd_scene load_steps=15 format=3 uid="uid://doxpxpkm7pkft"]
 
-[ext_resource type="Script" uid="uid://c3wbrqqltlnk4" path="res://Scenes/bosses/boss.gd" id="1_cc80q"]
-[ext_resource type="Texture2D" uid="uid://btd4mqoye2o4g" path="res://assets/wimiProductions.png" id="1_knd0e"]
-[ext_resource type="Script" uid="uid://ckkwd4s8u2ot5" path="res://Scenes/bosses/moves.gd" id="3_u616s"]
-[ext_resource type="PackedScene" uid="uid://bl7627p04cq51" path="res://Scenes/areas/hitbox.tscn" id="7_301be"]
+[ext_resource type="Script" uid="uid://c3wbrqqltlnk4" path="res://Scenes/bosses/boss.gd" id="1_8nkvc"]
+[ext_resource type="Texture2D" uid="uid://btd4mqoye2o4g" path="res://assets/wimiProductions.png" id="2_dtj18"]
+[ext_resource type="Script" uid="uid://ckkwd4s8u2ot5" path="res://Scenes/bosses/moves.gd" id="3_iivl8"]
+[ext_resource type="PackedScene" uid="uid://ds536tt1shwum" path="res://Scenes/bosses/alexandra/vira_lunge.tscn" id="4_dxsjm"]
+[ext_resource type="PackedScene" uid="uid://cswc87o23f4yc" path="res://Scenes/bosses/alexandra/alex_counter.tscn" id="5_1hafy"]
+[ext_resource type="PackedScene" uid="uid://wjwl6xgdyimn" path="res://Scenes/bosses/alexandra/fireball.tscn" id="6_gapj7"]
+[ext_resource type="PackedScene" uid="uid://bl7627p04cq51" path="res://Scenes/areas/hitbox.tscn" id="7_f4kdc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yrvcf"]
 size = Vector2(76, 193)
@@ -131,6 +134,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [Vector2(0, 0), Vector2(167.5, 44), Vector2(0, 0)]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("moves/vira_lunge")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.166667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"lunge"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mxf5f"]
 _data = {
@@ -146,7 +163,7 @@ size = Vector2(0, 0)
 [node name="boss" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 65536
 collision_mask = 65536
-script = ExtResource("1_cc80q")
+script = ExtResource("1_8nkvc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_yrvcf")
@@ -154,19 +171,25 @@ shape = SubResource("RectangleShape2D_yrvcf")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 3.8147e-06)
 scale = Vector2(0.153846, 0.375969)
-texture = ExtResource("1_knd0e")
+texture = ExtResource("2_dtj18")
 
 [node name="moves" type="Node" parent="." node_paths=PackedStringArray("body", "ap")]
-script = ExtResource("3_u616s")
+script = ExtResource("3_iivl8")
 body = NodePath("..")
 ap = NodePath("../ap")
+
+[node name="vira_lunge" parent="moves" instance=ExtResource("4_dxsjm")]
+
+[node name="alex_counter" parent="moves" instance=ExtResource("5_1hafy")]
+
+[node name="fireball" parent="moves" instance=ExtResource("6_gapj7")]
 
 [node name="ap" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_mxf5f")
 }
 
-[node name="a2dHitbox" parent="." instance=ExtResource("7_301be")]
+[node name="a2dHitbox" parent="." instance=ExtResource("7_f4kdc")]
 
 [node name="hitbox" type="CollisionShape2D" parent="a2dHitbox"]
 position = Vector2(167.5, 44)

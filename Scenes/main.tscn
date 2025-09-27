@@ -1,15 +1,16 @@
-[gd_scene load_steps=14 format=4 uid="uid://brpryaa6blx3x"]
+[gd_scene load_steps=15 format=4 uid="uid://brpryaa6blx3x"]
 
 [ext_resource type="Script" uid="uid://bltgjwa8asr6c" path="res://Scenes/system/stage.gd" id="1_6iyac"]
 [ext_resource type="PackedScene" uid="uid://rc3aggfpupcw" path="res://Scenes/virtual_controller/virtual_controller.tscn" id="1_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://c5euaw5jcse1y" path="res://Scenes/player.tscn" id="1_tgdj8"]
 [ext_resource type="PackedScene" uid="uid://5c0emt8c5dxv" path="res://Scenes/Enemy0.tscn" id="2_hu37d"]
 [ext_resource type="PackedScene" uid="uid://daccvelcfm2au" path="res://Scenes/collision_objects/falling_platform.tscn" id="3_j3hri"]
+[ext_resource type="PackedScene" uid="uid://1xbfaqaulvhb" path="res://Scenes/bosses/lote/lote.tscn" id="3_jkdf5"]
 [ext_resource type="PackedScene" uid="uid://d5ecinhvtmc0" path="res://Scenes/collision_objects/moving_platform.tscn" id="4_wu6sk"]
 [ext_resource type="PackedScene" uid="uid://bw2fb0ynhxejh" path="res://Scenes/tileset/tile_map.tscn" id="6_0l4rx"]
 [ext_resource type="PackedScene" uid="uid://ciqg174sswpaw" path="res://Scenes/npcs/mob.tscn" id="6_ls3em"]
 [ext_resource type="PackedScene" uid="uid://d4aexgs6n4rl2" path="res://Scenes/collision_objects/illusion_platform.tscn" id="7_d3ab4"]
-[ext_resource type="PackedScene" uid="uid://bp0l628jvenqb" path="res://Scenes/bosses/boss.tscn" id="8_cdj2j"]
+[ext_resource type="PackedScene" uid="uid://doxpxpkm7pkft" path="res://Scenes/bosses/alexandra/alexandra.tscn" id="9_fdnlq"]
 [ext_resource type="PackedScene" uid="uid://d2q3k8lq2jr5p" path="res://Scenes/enemies/spawner.tscn" id="10_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://dq03aualu4bnx" path="res://Scenes/UI/in_game_UI/in_game_ui.tscn" id="10_hptm8"]
 [ext_resource type="PackedScene" uid="uid://bcn51822r3ndn" path="res://Scenes/enemies/turret.tscn" id="13_fdnlq"]
@@ -17,8 +18,11 @@
 [node name="Main" type="Node2D"]
 script = ExtResource("1_6iyac")
 
+[node name="boss" parent="." instance=ExtResource("3_jkdf5")]
+position = Vector2(3874.1174, 1692.4175)
+
 [node name="Player" parent="." node_paths=PackedStringArray("vc") instance=ExtResource("1_tgdj8")]
-position = Vector2(1944, 1112)
+position = Vector2(3272, 1728)
 vc = NodePath("../virtualController")
 
 [node name="virtualController" parent="." instance=ExtResource("1_d1ilt")]
@@ -39,10 +43,8 @@ scale = Vector2(-1, 1)
 [node name="illusion_platform" parent="." instance=ExtResource("7_d3ab4")]
 position = Vector2(1824, 1156)
 
-[node name="boss" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_cdj2j")]
-position = Vector2(8531, 849)
-player = NodePath("../Player")
-attackCooldown = 0.5
+[node name="boss" parent="illusion_platform" instance=ExtResource("9_fdnlq")]
+position = Vector2(6142.106, -162.5235)
 
 [node name="platforms" type="Node" parent="."]
 
@@ -67,4 +69,4 @@ enemy = ExtResource("2_hu37d")
 spawnTime = 0.5
 
 [node name="turret" parent="." instance=ExtResource("13_fdnlq")]
-position = Vector2(3096, 1704)
+position = Vector2(-168, 1064)

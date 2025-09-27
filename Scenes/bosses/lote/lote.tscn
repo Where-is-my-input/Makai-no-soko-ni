@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://1xbfaqaulvhb"]
+
+[ext_resource type="PackedScene" uid="uid://bp0l628jvenqb" path="res://Scenes/bosses/boss.tscn" id="1_lrecb"]
+[ext_resource type="PackedScene" uid="uid://b8towtrgpbw4m" path="res://Scenes/bosses/lote/lote_lunge.tscn" id="2_ukdxu"]
+
+[node name="boss" instance=ExtResource("1_lrecb")]
+
+[node name="loteLunge" parent="moves" index="0" instance=ExtResource("2_ukdxu")]

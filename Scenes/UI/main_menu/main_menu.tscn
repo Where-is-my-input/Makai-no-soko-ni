@@ -22,10 +22,14 @@ offset_top = -136.0
 offset_right = 70.0
 grow_vertical = 0
 
+[node name="start" type="Button" parent="vBox"]
+layout_mode = 2
+text = "New Game"
+
 [node name="play" type="Button" parent="vBox"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../quit")
-text = "Play"
+text = "Debug Scenes"
 
 [node name="options" type="Button" parent="vBox"]
 layout_mode = 2
