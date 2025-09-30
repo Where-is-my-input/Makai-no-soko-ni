@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bpuel3qwyq3ls"]
+[gd_scene load_steps=2 format=3 uid="uid://bpuel3qwyq3ls"]
+
+[ext_resource type="Script" uid="uid://b78khsclfqdpf" path="res://Scenes/UI/characterSelect/character_select.gd" id="1_hb0us"]
 
 [node name="CharacterSelect" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hb0us")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -70,3 +73,11 @@ text = "Hitless"
 [node name="btnKudos" type="Button" parent="VBoxContainer/VBoxContainer2/crestCores"]
 layout_mode = 2
 text = "Kudos"
+
+[connection signal="pressed" from="VBoxContainer/Character/btnCecilia" to="." method="_on_btn_cecilia_pressed"]
+[connection signal="pressed" from="VBoxContainer/Character/btnGeovanna" to="." method="_on_btn_geovanna_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/crestCores/btnBand" to="." method="_on_btn_band_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/crestCores/btnFragile" to="." method="_on_btn_fragile_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/crestCores/btnEver" to="." method="_on_btn_ever_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/crestCores/btnHitless" to="." method="_on_btn_hitless_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/crestCores/btnKudos" to="." method="_on_btn_kudos_pressed"]

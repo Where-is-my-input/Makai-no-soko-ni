@@ -10,14 +10,28 @@ var msec: int = 0
 
 var paused:bool = false
 
+signal globalCycle0 #Blink eyes + HUD animation
+signal globalCycle1 #Crest reflection animation?
+var cycles:int = 0
+
 func _process(delta):
 	if paused: return
 	#time += delta #this doesn't count frames right?
 	time += 1
+	
+	if (int(time) % 25) == 0: runCycle()
+	
 	msec = fmod(time, 1) * 100
 	seconds = fmod(time, 60)
 	minutes = fmod(time, 3600) / 60
 	hours = floor(time / 60 / 60 / 60)
+
+func runCycle():
+	globalCycle0.emit()
+	cycles += 1
+	if cycles == 5:
+		globalCycle1.emit()
+		cycles = 0
 
 func resetIGT():
 	time = 0.0

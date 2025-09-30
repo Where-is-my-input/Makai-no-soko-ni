@@ -4,9 +4,11 @@ extends Control
 @export var play:PackedScene
 @export var options:PackedScene
 @export var credits:PackedScene
+@export var newGame:PackedScene
 
 func _ready() -> void:
 	btnPlay.grab_focus()
+	Inventory.reset()
 
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_packed(play)
@@ -16,3 +18,6 @@ func _on_options_pressed() -> void:
 	
 func _on_credits_pressed() -> void:
 	get_tree().change_scene_to_packed(credits)
+
+func _on_start_pressed() -> void:
+	get_tree().change_scene_to_packed(newGame)

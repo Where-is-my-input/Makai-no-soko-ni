@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cs87sly5qy386"]
+[gd_scene load_steps=4 format=3 uid="uid://cs87sly5qy386"]
 
 [ext_resource type="Script" uid="uid://bwqqh6pdr7r6l" path="res://Scenes/UI/main_menu/main_menu.gd" id="1_8giav"]
 [ext_resource type="PackedScene" uid="uid://c3xgbexhgrg4d" path="res://Scenes/UI/stage_select/stage_select.tscn" id="2_uc1vr"]
+[ext_resource type="PackedScene" uid="uid://bpuel3qwyq3ls" path="res://Scenes/UI/characterSelect/character_select.tscn" id="3_5ac0q"]
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -12,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8giav")
 play = ExtResource("2_uc1vr")
+newGame = ExtResource("3_5ac0q")
 
 [node name="vBox" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -45,6 +47,7 @@ layout_mode = 2
 focus_neighbor_bottom = NodePath("../play")
 text = "Quit"
 
+[connection signal="pressed" from="vBox/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="vBox/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="vBox/options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="vBox/credits" to="." method="_on_credits_pressed"]
