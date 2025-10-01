@@ -21,6 +21,7 @@ Global="*res://Scenes/system/global.gd"
 LoadManager="*res://Scenes/autoload/load_manager.gd"
 InGameTimer="*res://Scenes/in_game_timer/in_game_timer.tscn"
 Inventory="*res://system/inventory/inventory.gd"
+Notifications="*res://system/notifications.tscn"
 
 [display]
 

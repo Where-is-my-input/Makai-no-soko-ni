@@ -6,12 +6,14 @@ extends CanvasLayer
 @onready var enemy_container: HBoxContainer = $enemyContainer
 @onready var tpb_stacks: TextureProgressBar = $tpbStacks
 @onready var lbl_level: Label = $lblLevel
-
+@onready var notifications_container: VBoxContainer = $notificationsContainer
+const DETAILED_HEALTH_BAR = preload("uid://4q3gx4ds06e5")
 const HEALTH_BAR = preload("res://Scenes/UI/health_bar/health_bar.tscn")
 
 func _ready() -> void:
 	#await player.ready
 	Global.setHpBar.connect(setNewHealthBar)
+	Notifications.connect("enemyHit", notifyEnemyHit)
 	#Global.connect("setHpBar", setNewHealthBar)
 	player.level_system.connect("setHpBar", setNewHealthBar)
 	setXpBar()
@@ -44,3 +46,9 @@ func setNewHealthBar(node:CharacterBody2D):
 	
 func updateStacks(value = 1):
 	tpb_stacks.value = value
+
+func notifyEnemyHit(enemyName:String = "Enemy", maxHp:int = 10, currentHp:int = 10):
+	var newHPBar = DETAILED_HEALTH_BAR.instantiate()
+	notifications_container.add_child(newHPBar)
+	newHPBar.setName(enemyName)
+	newHPBar.setHpBar(currentHp, maxHp)

@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://4q3gx4ds06e5"]
+
+[ext_resource type="Script" uid="uid://duk01a22liwoi" path="res://Scenes/UI/health_bar/detailed_health_bar.gd" id="1_1h2xs"]
+[ext_resource type="PackedScene" uid="uid://b2rm0a0r6wosf" path="res://Scenes/UI/health_bar/health_bar.tscn" id="1_six1d"]
+
+[node name="detailedHealthBar" type="BoxContainer"]
+custom_minimum_size = Vector2(25, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1h2xs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="lblName" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Enemy"
+
+[node name="healthBar" parent="VBoxContainer" instance=ExtResource("1_six1d")]
+layout_mode = 2
+
+[node name="tmrDespawn" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="tmrDespawn" to="." method="_on_tmr_despawn_timeout"]

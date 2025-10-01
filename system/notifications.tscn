@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://r6pmejff272y"]
+
+[ext_resource type="Script" uid="uid://pqjruy4onfno" path="res://Scenes/system/notifications.gd" id="1_rsdcm"]
+
+[node name="notifications" type="Node"]
+script = ExtResource("1_rsdcm")

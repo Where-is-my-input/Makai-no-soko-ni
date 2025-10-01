@@ -16,3 +16,7 @@ func updateHealth(newValue):
 
 func setMaxHealth(v):
 	max_value = v
+
+func setHpBar(currentHp:int = 10, maxHp:int = 20):
+	max_value = maxHp
+	value = currentHp

@@ -10,6 +10,7 @@ class_name EnemyClass
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+const MAX_HP = 20
 
 var xpValue = 5
 var hp = 20
@@ -41,6 +42,8 @@ func takeDamage(value, damageType = Global.DamageType.PHYSICAL, isStagger = fals
 	if isStagger: 
 		staggerMeter += value
 		verifyIfGotStaggered()
+	
+	Notifications.enemyGotHit("Enemy0", MAX_HP, hp)
 	
 	if hp <= 0:
 		die()
