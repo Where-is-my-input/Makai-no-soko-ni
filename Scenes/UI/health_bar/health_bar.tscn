@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2rm0a0r6wosf"]
+[gd_scene load_steps=7 format=3 uid="uid://b2rm0a0r6wosf"]
 
 [ext_resource type="Script" uid="uid://bdk0doxi6hbx3" path="res://Scenes/UI/health_bar/health_bar.gd" id="1_eo07i"]
+[ext_resource type="Texture2D" uid="uid://132bhav17jfl" path="res://assets/HUD/Geovanna/HPBarClear.png" id="1_u2mu3"]
+[ext_resource type="Texture2D" uid="uid://cm5oiyfnjuo33" path="res://assets/HUD/Geovanna/HPBarFill.png" id="2_hft3l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eo07i"]
 bg_color = Color(0.801387, 0.140295, 2.88785e-07, 1)
@@ -12,12 +14,15 @@ bg_color = Color(0, 0.432315, 0.14996, 1)
 ProgressBar/styles/background = SubResource("StyleBoxFlat_eo07i")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_32nv7")
 
-[node name="healthBar" type="ProgressBar"]
-custom_minimum_size = Vector2(150, 25)
-offset_left = -100.0
-offset_right = 104.0
-offset_bottom = 27.0
+[node name="healthBar" type="TextureProgressBar"]
+offset_left = -320.0
+offset_top = -135.99998
+offset_right = 2160.0
+offset_bottom = 1001.0
+scale = Vector2(0.26110226, 0.26110226)
 theme = SubResource("Theme_u2mu3")
 value = 50.0
-show_percentage = false
+nine_patch_stretch = true
+texture_over = ExtResource("1_u2mu3")
+texture_progress = ExtResource("2_hft3l")
 script = ExtResource("1_eo07i")

@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 @export var player:Node2D
-@onready var health_bar: ProgressBar = $healthBar
+@onready var health_bar: TextureProgressBar = $healthBar
 @onready var xp_bar: ProgressBar = $xpBar
 @onready var enemy_container: HBoxContainer = $enemyContainer
 @onready var tpb_stacks: TextureProgressBar = $tpbStacks

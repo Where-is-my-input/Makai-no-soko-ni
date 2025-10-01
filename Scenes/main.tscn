@@ -22,7 +22,7 @@ script = ExtResource("1_6iyac")
 position = Vector2(3874.1174, 1692.4175)
 
 [node name="Player" parent="." node_paths=PackedStringArray("vc") instance=ExtResource("1_tgdj8")]
-position = Vector2(1416, 1032)
+position = Vector2(5016, 1016)
 vc = NodePath("../virtualController")
 
 [node name="virtualController" parent="." instance=ExtResource("1_d1ilt")]

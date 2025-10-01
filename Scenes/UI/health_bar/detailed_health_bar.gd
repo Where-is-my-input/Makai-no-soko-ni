@@ -2,7 +2,7 @@ extends Control
 
 @export var timeToDespawn:float = 5
 @onready var lbl_name: Label = $VBoxContainer/HBoxContainer/lblName
-@onready var health_bar: ProgressBar = $VBoxContainer/healthBar
+@onready var health_bar: TextureProgressBar = $VBoxContainer/healthBar
 @onready var tmr_despawn: Timer = $tmrDespawn
 
 func _ready() -> void:
