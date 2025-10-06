@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://brpryaa6blx3x"]
+[gd_scene load_steps=17 format=4 uid="uid://brpryaa6blx3x"]
 
 [ext_resource type="Script" uid="uid://bltgjwa8asr6c" path="res://Scenes/system/stage.gd" id="1_6iyac"]
 [ext_resource type="PackedScene" uid="uid://rc3aggfpupcw" path="res://Scenes/virtual_controller/virtual_controller.tscn" id="1_d1ilt"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://d2q3k8lq2jr5p" path="res://Scenes/enemies/spawner.tscn" id="10_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://dq03aualu4bnx" path="res://Scenes/UI/in_game_UI/in_game_ui.tscn" id="10_hptm8"]
 [ext_resource type="PackedScene" uid="uid://bcn51822r3ndn" path="res://Scenes/enemies/turret.tscn" id="13_fdnlq"]
+[ext_resource type="PackedScene" uid="uid://cq1gjrtk6b4xh" path="res://Scenes/enemies/wallEnemy.tscn" id="15_wsu2k"]
+[ext_resource type="PackedScene" uid="uid://d28dhpm8way5n" path="res://Scenes/enemies/enemy_1.tscn" id="16_k12tt"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_6iyac")
@@ -70,3 +72,9 @@ spawnTime = 0.5
 
 [node name="turret" parent="." instance=ExtResource("13_fdnlq")]
 position = Vector2(-168, 1064)
+
+[node name="Enemy1" parent="." instance=ExtResource("15_wsu2k")]
+position = Vector2(5589, 940)
+
+[node name="Enemy1" parent="Enemy1" instance=ExtResource("16_k12tt")]
+position = Vector2(-978.88135, 116.06714)

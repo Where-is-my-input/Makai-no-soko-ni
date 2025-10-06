@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bknv273x1w31v"
-path="res://.godot/imported/frame2.png-29ea22c0497e329faf8432385b25fe57.ctex"
+uid="uid://c2v8nk4inkbck"
+path="res://.godot/imported/wallMob.png-1f4fe2991d8f56317d5ff18a48d60127.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/Geovanna/frame2.png"
-dest_files=["res://.godot/imported/frame2.png-29ea22c0497e329faf8432385b25fe57.ctex"]
+source_file="res://assets/Sprites/Mobs/wallMob.png"
+dest_files=["res://.godot/imported/wallMob.png-1f4fe2991d8f56317d5ff18a48d60127.ctex"]
 
 [params]
 

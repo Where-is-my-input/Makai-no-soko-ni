@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cq1gjrtk6b4xh"]
+
+[ext_resource type="PackedScene" uid="uid://d28dhpm8way5n" path="res://Scenes/enemies/enemy_1.tscn" id="1_bahwl"]
+[ext_resource type="Texture2D" uid="uid://c2v8nk4inkbck" path="res://assets/Sprites/Mobs/wallMob.png" id="2_3ln7g"]
+[ext_resource type="PackedScene" uid="uid://bcn51822r3ndn" path="res://Scenes/enemies/turret.tscn" id="3_7fqqt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ln7g"]
+resource_local_to_scene = true
+size = Vector2(67, 432)
+
+[node name="Enemy1" instance=ExtResource("1_bahwl")]
+speed = 0.0
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_3ln7g")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(17.5, 0)
+shape = SubResource("RectangleShape2D_3ln7g")
+
+[node name="turret" parent="." index="3" instance=ExtResource("3_7fqqt")]
+position = Vector2(18, -12)

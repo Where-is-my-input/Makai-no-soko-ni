@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://clkx584y51o65" path="res://Scenes/enemies/enemy_1.gd" id="1_khq8v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_khq8v"]
+resource_local_to_scene = true
 size = Vector2(40, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8jmmg"]
