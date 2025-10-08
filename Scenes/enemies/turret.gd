@@ -13,7 +13,7 @@ func fire():
 	var bullet = PROJECTILE.instantiate()
 	bullet.direction = direction
 	bullet.global_position = global_position
-	add_sibling(bullet)
+	get_tree().root.add_child(bullet)
 
 
 func _on_tmr_fire_rate_timeout() -> void:

@@ -9,6 +9,7 @@ resource_local_to_scene = true
 size = Vector2(67, 432)
 
 [node name="Enemy1" instance=ExtResource("1_bahwl")]
+enableGravity = true
 speed = 0.0
 
 [node name="Sprite2D" parent="." index="0"]
@@ -19,4 +20,4 @@ position = Vector2(17.5, 0)
 shape = SubResource("RectangleShape2D_3ln7g")
 
 [node name="turret" parent="." index="3" instance=ExtResource("3_7fqqt")]
-position = Vector2(18, -12)
+position = Vector2(18, -11)

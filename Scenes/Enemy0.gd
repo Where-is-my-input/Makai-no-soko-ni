@@ -7,10 +7,10 @@ class_name EnemyClass
 @export var physicalResistance = 0.75
 @export var magicResistance = 0.9
 @export var staggerRecoveryTime:float = 5.0
+@export var speed = 300.0
+@export var maxHp = 20
 
-const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-const MAX_HP = 20
 
 var xpValue = 5
 var hp = 20
@@ -27,9 +27,9 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 
 	if !isStaggered: 
-		velocity.x = SPEED * facing
+		velocity.x = speed * facing
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
 
 	move_and_slide()
 
@@ -43,7 +43,7 @@ func takeDamage(value, damageType = Global.DamageType.PHYSICAL, isStagger = fals
 		staggerMeter += value
 		verifyIfGotStaggered()
 	
-	Notifications.enemyGotHit("Enemy0", MAX_HP, hp)
+	Notifications.enemyGotHit("Enemy0", maxHp, hp)
 	
 	if hp <= 0:
 		die()
@@ -62,3 +62,7 @@ func _on_tmr_stagger_recovery_timeout() -> void:
 	staggerRecoveryTime *= 0.5
 	isStaggered = false
 	enableGravity = false
+
+func flip():
+	facing *= -1
+	scale.x *= -1

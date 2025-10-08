@@ -10,8 +10,9 @@ size = Vector2(40, 48)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8jmmg"]
 size = Vector2(8, 8)
 
-[node name="Enemy1" type="CharacterBody2D"]
+[node name="Enemy1" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_khq8v")
+enableGravity = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(18.999998, -5)
@@ -29,4 +30,4 @@ position = Vector2(-28, 28)
 shape = SubResource("RectangleShape2D_8jmmg")
 debug_color = Color(0.7815176, 0.12537548, 0.99999994, 0.41960785)
 
-[connection signal="body_exited" from="groundDetection" to="." method="_on_ground_detection_body_exited"]
+[connection signal="body_exited" from="groundDetection" to="." method="flip"]
