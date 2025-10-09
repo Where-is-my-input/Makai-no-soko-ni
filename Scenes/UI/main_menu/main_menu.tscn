@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cs87sly5qy386"]
+[gd_scene load_steps=6 format=3 uid="uid://cs87sly5qy386"]
 
 [ext_resource type="Script" uid="uid://bwqqh6pdr7r6l" path="res://Scenes/UI/main_menu/main_menu.gd" id="1_8giav"]
 [ext_resource type="PackedScene" uid="uid://c3xgbexhgrg4d" path="res://Scenes/UI/stage_select/stage_select.tscn" id="2_uc1vr"]
 [ext_resource type="PackedScene" uid="uid://bpuel3qwyq3ls" path="res://Scenes/UI/characterSelect/character_select.tscn" id="3_5ac0q"]
+[ext_resource type="PackedScene" uid="uid://p0owvgwrdtl5" path="res://Scenes/UI/options/options.tscn" id="3_7gdw1"]
 [ext_resource type="Texture2D" uid="uid://cjbciminxn4uq" path="res://assets/HUD/logo.png" id="4_b41sb"]
 
 [node name="main_menu" type="Control"]
@@ -14,6 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8giav")
 play = ExtResource("2_uc1vr")
+options = ExtResource("3_7gdw1")
 newGame = ExtResource("3_5ac0q")
 
 [node name="vBox" type="VBoxContainer" parent="."]

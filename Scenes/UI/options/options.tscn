@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://p0owvgwrdtl5"]
 
-[ext_resource type="Script" uid="uid://cjfi83tgec3jq" path="res://control/options/options.gd" id="1_le8h5"]
+[ext_resource type="Script" uid="uid://cjfi83tgec3jq" path="res://Scenes/UI/options/options.gd" id="1_le8h5"]
 
 [node name="options" type="Control"]
 layout_mode = 3
@@ -30,3 +30,11 @@ metadata/_tab_index = 0
 [node name="Tree" type="Tree" parent="MarginContainer/TabContainer/VBoxContainer"]
 layout_mode = 2
 column_titles_visible = true
+
+[node name="btnButtonMap" type="Button" parent="MarginContainer/TabContainer/VBoxContainer/Tree"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Controller config"
+
+[connection signal="pressed" from="MarginContainer/TabContainer/VBoxContainer/Tree/btnButtonMap" to="." method="_on_btn_button_map_pressed"]
