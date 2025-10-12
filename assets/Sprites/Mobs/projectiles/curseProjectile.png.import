@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxeptvi536nsj"
-path="res://.godot/imported/fireball.png-0794a257a1747968bcc00b8f930fdb00.ctex"
+uid="uid://b5pbvnxw7cre7"
+path="res://.godot/imported/curseProjectile.png-e3d5c72d887fb7ea361810c550e4f8fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/Mobs/fireballs/fireball.png"
-dest_files=["res://.godot/imported/fireball.png-0794a257a1747968bcc00b8f930fdb00.ctex"]
+source_file="res://assets/Sprites/Mobs/projectiles/curseProjectile.png"
+dest_files=["res://.godot/imported/curseProjectile.png-e3d5c72d887fb7ea361810c550e4f8fe.ctex"]
 
 [params]
 

@@ -15,11 +15,16 @@
 [node name="Main" type="Node2D"]
 script = ExtResource("1_6iyac")
 
-[node name="boss" parent="." instance=ExtResource("3_jkdf5")]
+[node name="boss" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_jkdf5")]
 position = Vector2(3874.1174, 1692.4175)
+player = NodePath("../Player")
+
+[node name="boss2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_fdnlq")]
+position = Vector2(7966.106, 993.4765)
+player = NodePath("../Player")
 
 [node name="Player" parent="." node_paths=PackedStringArray("vc") instance=ExtResource("1_tgdj8")]
-position = Vector2(6053, 1088)
+position = Vector2(8008, 504)
 vc = NodePath("../virtualController")
 
 [node name="virtualController" parent="." instance=ExtResource("1_d1ilt")]
@@ -35,9 +40,6 @@ tile_map_data = PackedByteArray("AAD9/xIAAAAAAAAAAAD+/xIAAAAAAAAAAAD//xIAAAAAAAA
 
 [node name="illusion_platform" parent="." instance=ExtResource("7_d3ab4")]
 position = Vector2(1824, 1156)
-
-[node name="boss" parent="illusion_platform" instance=ExtResource("9_fdnlq")]
-position = Vector2(6142.106, -162.5235)
 
 [node name="platforms" type="Node" parent="."]
 

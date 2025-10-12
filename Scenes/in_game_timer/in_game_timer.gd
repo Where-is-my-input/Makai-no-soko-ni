@@ -14,7 +14,7 @@ signal globalCycle0 #Blink eyes + HUD animation
 signal globalCycle1 #Crest reflection animation?
 var cycles:int = 0
 
-func _process(delta):
+func _process(_delta):
 	if paused: return
 	#time += delta #this doesn't count frames right?
 	time += 1
@@ -25,6 +25,9 @@ func _process(delta):
 	seconds = fmod(time, 60)
 	minutes = fmod(time, 3600) / 60
 	hours = floor(time / 60 / 60 / 60)
+
+func getRNG():
+	return int(time) % 5
 
 func runCycle():
 	globalCycle0.emit()
