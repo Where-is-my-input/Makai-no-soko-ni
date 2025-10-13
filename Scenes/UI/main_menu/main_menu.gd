@@ -21,3 +21,7 @@ func _on_credits_pressed() -> void:
 
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_packed(newGame)
+
+func _on_load_pressed() -> void:
+	Inventory.loadGame()
+	get_tree().change_scene_to_file("res://Scenes/main.tscn")

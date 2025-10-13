@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://bltgjwa8asr6c" path="res://Scenes/system/stage.gd" id="1_6iyac"]
 [ext_resource type="PackedScene" uid="uid://rc3aggfpupcw" path="res://Scenes/virtual_controller/virtual_controller.tscn" id="1_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://c5euaw5jcse1y" path="res://Scenes/player.tscn" id="1_tgdj8"]
+[ext_resource type="PackedScene" uid="uid://bcn51822r3ndn" path="res://Scenes/enemies/turret.tscn" id="3_6iyac"]
 [ext_resource type="PackedScene" uid="uid://daccvelcfm2au" path="res://Scenes/collision_objects/falling_platform.tscn" id="3_j3hri"]
-[ext_resource type="PackedScene" uid="uid://1xbfaqaulvhb" path="res://Scenes/bosses/lote/lote.tscn" id="3_jkdf5"]
 [ext_resource type="PackedScene" uid="uid://d5ecinhvtmc0" path="res://Scenes/collision_objects/moving_platform.tscn" id="4_wu6sk"]
 [ext_resource type="PackedScene" uid="uid://bw2fb0ynhxejh" path="res://Scenes/tileset/tile_map.tscn" id="6_0l4rx"]
 [ext_resource type="PackedScene" uid="uid://d4aexgs6n4rl2" path="res://Scenes/collision_objects/illusion_platform.tscn" id="7_d3ab4"]
@@ -15,16 +15,15 @@
 [node name="Main" type="Node2D"]
 script = ExtResource("1_6iyac")
 
+[node name="turret" parent="." instance=ExtResource("3_6iyac")]
+position = Vector2(-160, 952)
+
 [node name="body" parent="." node_paths=PackedStringArray("vc") instance=ExtResource("1_tgdj8")]
+position = Vector2(6784, 1056)
 vc = NodePath("../virtualController")
 
-[node name="boss" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_jkdf5")]
-position = Vector2(3874.1174, 1692.4175)
-player = NodePath("")
-
-[node name="boss2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_fdnlq")]
+[node name="boss2" parent="." instance=ExtResource("9_fdnlq")]
 position = Vector2(7966.106, 993.4765)
-player = NodePath("")
 
 [node name="virtualController" parent="." instance=ExtResource("1_d1ilt")]
 

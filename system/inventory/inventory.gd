@@ -34,6 +34,10 @@ var character:Character = Character.GEOVANNA
 var core:Core = Core.CORELESS
 @export var fragments:Array[Fragment]
 
+#Upgrades
+var dashes:int = 0
+var jumps:int = 1
+
 var currentSlot:int = 0
 
 func reset():

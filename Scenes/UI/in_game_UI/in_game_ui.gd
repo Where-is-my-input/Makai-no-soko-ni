@@ -9,6 +9,7 @@ extends CanvasLayer
 @onready var notifications_container: VBoxContainer = $notificationsContainer
 const DETAILED_HEALTH_BAR = preload("uid://4q3gx4ds06e5")
 const HEALTH_BAR = preload("res://Scenes/UI/health_bar/health_bar.tscn")
+const HIT_NOTIFICATION = preload("uid://bssq4sgddohxt")
 
 func _ready() -> void:
 	#await player.ready
@@ -47,8 +48,15 @@ func setNewHealthBar(node:CharacterBody2D):
 func updateStacks(value = 1):
 	tpb_stacks.value = value
 
-func notifyEnemyHit(enemyName:String = "Enemy", maxHp:int = 10, currentHp:int = 10):
+func notifyEnemyHit(enemyName:String = "Enemy", maxHp:int = 10, currentHp:int = 10, damageDealt:int = 0, hitPos:Vector2 = Vector2(0,0)):
 	var newHPBar = DETAILED_HEALTH_BAR.instantiate()
 	notifications_container.add_child(newHPBar)
 	newHPBar.setName(enemyName)
 	newHPBar.setHpBar(currentHp, maxHp)
+	
+	var newHitNotification = HIT_NOTIFICATION.instantiate()
+	newHitNotification.global_position = hitPos
+	newHitNotification.combo = Global.combo
+	newHitNotification.damage = damageDealt
+	add_sibling(newHitNotification)
+	

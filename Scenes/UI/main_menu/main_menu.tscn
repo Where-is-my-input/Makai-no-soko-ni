@@ -23,8 +23,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -136.0
-offset_right = 70.0
+offset_left = 14.0
+offset_top = -186.0
+offset_right = 130.0
+offset_bottom = -15.0
 grow_vertical = 0
 
 [node name="start" type="Button" parent="vBox"]
@@ -35,6 +37,10 @@ text = "New Game"
 layout_mode = 2
 focus_neighbor_top = NodePath("../quit")
 text = "Debug Scenes"
+
+[node name="load" type="Button" parent="vBox"]
+layout_mode = 2
+text = "Load"
 
 [node name="options" type="Button" parent="vBox"]
 layout_mode = 2
@@ -61,5 +67,6 @@ texture = ExtResource("4_b41sb")
 
 [connection signal="pressed" from="vBox/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="vBox/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="vBox/load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="vBox/options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="vBox/credits" to="." method="_on_credits_pressed"]

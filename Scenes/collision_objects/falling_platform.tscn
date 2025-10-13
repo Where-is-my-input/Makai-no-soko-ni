@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://daccvelcfm2au"]
+[gd_scene load_steps=5 format=3 uid="uid://daccvelcfm2au"]
 
 [ext_resource type="PackedScene" uid="uid://bovqlon3fgh62" path="res://Scenes/collision_objects/platform.tscn" id="1_hiqhc"]
 [ext_resource type="Script" uid="uid://dqrb10h0jiqq3" path="res://Scenes/collision_objects/falling_platform.gd" id="2_7p70p"]
+[ext_resource type="Texture2D" uid="uid://6u18okigaajq" path="res://assets/Sprites/Platforms/disapearingPlatform.png" id="3_5rbot"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwg1k"]
 size = Vector2(62, 8)
@@ -15,5 +16,10 @@ script = ExtResource("2_7p70p")
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_dwg1k")
 debug_color = Color(0.520577, 0.417988, 1, 0.42)
+
+[node name="Sprite2D" parent="cbPlatform" index="2"]
+position = Vector2(0, 7.999999)
+scale = Vector2(0.09474463, 0.07655503)
+texture = ExtResource("3_5rbot")
 
 [connection signal="body_entered" from="cbPlatform/Area2D" to="." method="_on_area_2d_body_entered"]

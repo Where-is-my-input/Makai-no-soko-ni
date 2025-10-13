@@ -1,13 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4aexgs6n4rl2"]
+[gd_scene load_steps=5 format=3 uid="uid://d4aexgs6n4rl2"]
 
 [ext_resource type="PackedScene" uid="uid://bovqlon3fgh62" path="res://Scenes/collision_objects/platform.tscn" id="1_n4pp7"]
 [ext_resource type="Script" uid="uid://c33icormdxhe" path="res://Scenes/collision_objects/illusion_platform.gd" id="2_s4c67"]
+[ext_resource type="Texture2D" uid="uid://bh7aqd71j6x83" path="res://assets/Sprites/Platforms/invisiblePlatform.png" id="3_mrlah"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rc1j"]
 size = Vector2(80, 32)
 
 [node name="illusion_platform" instance=ExtResource("1_n4pp7")]
 script = ExtResource("2_s4c67")
+
+[node name="Sprite2D" parent="cbPlatform" index="1"]
+scale = Vector2(0.045532156, 0.12403101)
+texture = ExtResource("3_mrlah")
 
 [node name="Area2D" type="Area2D" parent="." index="1"]
 

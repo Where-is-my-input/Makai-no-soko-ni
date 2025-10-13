@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://d5ecinhvtmc0"]
 
-[ext_resource type="Texture2D" uid="uid://63pt46lptvd2" path="res://icon.svg" id="1_aaig4"]
+[ext_resource type="Texture2D" uid="uid://dmwkfpnnd8xq4" path="res://assets/Sprites/Platforms/movingplatform.png" id="1_6m7vv"]
 
 [sub_resource type="Curve2D" id="Curve2D_2qdis"]
 _data = {
@@ -59,12 +59,12 @@ animation = &"move"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3nrus"]
 graph_offset = Vector2(-62.6421, 33.9161)
+nodes/output/position = Vector2(1020, 260)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_xb33m")
 nodes/Animation/position = Vector2(350, 178)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_k3pgo")
 nodes/TimeScale/position = Vector2(720, 180)
-nodes/output/position = Vector2(1020, 260)
-node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
 
 [node name="MovingPlatform" type="Node2D"]
 
@@ -89,12 +89,12 @@ metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/AnimatableBody2D"]
 light_mask = 0
-scale = Vector2(1.27624, 0.171875)
-texture = ExtResource("1_aaig4")
+scale = Vector2(0.14678898, 0.146789)
+texture = ExtResource("1_6m7vv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Path2D"]
 libraries = {
-"": SubResource("AnimationLibrary_wg5wf")
+&"": SubResource("AnimationLibrary_wg5wf")
 }
 autoplay = "move"
 

@@ -18,11 +18,7 @@ ProgressBar/styles/fill = SubResource("StyleBoxFlat_6rx21")
 script = ExtResource("1_22fj2")
 
 [node name="healthBar" parent="." instance=ExtResource("1_p4x4x")]
-offset_left = -162.99998
-offset_top = -108.00001
-offset_right = 2317.0
-offset_bottom = 1029.0
-scale = Vector2(0.22388914, 0.22388914)
+scale = Vector2(0.0939874, 0.028447289)
 
 [node name="xpBar" type="ProgressBar" parent="."]
 offset_left = 8.0

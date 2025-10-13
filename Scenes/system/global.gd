@@ -12,6 +12,7 @@ var debugSpeed:float = 300.0
 var debugJumpSpeed:float = -1400.0
 
 var stage:Node2D = null
+var combo:int = 0
 
 enum DamageType {
 	PHYSICAL,

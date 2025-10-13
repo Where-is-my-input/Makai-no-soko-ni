@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxfy0a4pdxysx"]
+
+[ext_resource type="Texture2D" uid="uid://boekw6ydwynj0" path="res://assets/Sprites/Cat/cat.png" id="1_c5kew"]
+[ext_resource type="Script" uid="uid://mabswolwxtfb" path="res://Scenes/npcs/cat.gd" id="1_lott8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c5kew"]
+size = Vector2(32, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lott8"]
+size = Vector2(80, 80)
+
+[node name="cat" type="CharacterBody2D"]
+script = ExtResource("1_lott8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.03225804, 0.032258064)
+texture = ExtResource("1_c5kew")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 17.5)
+shape = SubResource("RectangleShape2D_c5kew")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_lott8")
+debug_color = Color(0.73714525, 0.22466242, 1, 0.41960785)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

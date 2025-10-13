@@ -43,7 +43,7 @@ func takeDamage(value, damageType = Global.DamageType.PHYSICAL, isStagger = fals
 		staggerMeter += value
 		verifyIfGotStaggered()
 	
-	Notifications.enemyGotHit("Enemy0", maxHp, hp)
+	Notifications.enemyGotHit("Enemy0", maxHp, hp, value, global_position)
 	
 	if hp <= 0:
 		die()

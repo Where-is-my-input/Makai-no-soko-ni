@@ -45,6 +45,8 @@ var aIdle = "idle"
 #TODO Separar a animation tree com states de movimento (idle, dash), pra definir golpes
 
 func _ready():
+	maxDashes = Inventory.dashes
+	maxJumps = Inventory.jumps
 	animatedTree.set_deferred("active", true)
 	updateHealth.emit(hp)
 	level_system.levelUp.connect(levelUp)
@@ -78,7 +80,7 @@ func _physics_process(delta):
 		elif vc.jumpRelease:
 			jumpRelease()
 		var speedModified = crest_system.speedModifier(SPEED) #TODO create a function to set the modified speed when finishing equiping the crest
-		if is_on_floor() && isBlocking:
+		if is_on_floor() && (isBlocking && aIdle == "block"):
 				velocity.x = move_toward(velocity.x, 0, speedModified)
 		else:
 			if vc.dash && !isDashing && dash_timer.is_stopped():
@@ -162,6 +164,7 @@ func hitEffects(body, hitstop:float = 0.15, damageDealt:float = attack, damageTy
 	Global.hitstop.emit(hitstop)
 	level_system.gainXP(crest_system.gainXP(body.xpValue * 0.1))
 	damageDealt = crest_system.returnDamageDealt(damageDealt, 0) #TODO Combo counter
+	Global.combo += 1
 	if body.takeDamage(damageDealt, damageType, isStagger):
 		level_system.gainXP(crest_system.gainXP(body.xpValue))
 	
@@ -178,6 +181,7 @@ func stopDash():
 	dash_timer.stop()
 
 func getHit(damage = 1, knockback = true, knockbackDir = Vector2(2000, -500)):
+	Global.combo = 0
 	var damageTakenCrestModified = crest_system.returnDamageTaken()
 	damage = damageTakenCrestModified if damageTakenCrestModified > 0 else damage
 	hitstun = 15
