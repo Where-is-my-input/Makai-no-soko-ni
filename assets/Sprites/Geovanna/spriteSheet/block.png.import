@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsudcenyq388s"
-path="res://.godot/imported/dashSprite.png-ea9b54d1ff9d8827d60ece1e57fd4b3b.ctex"
+uid="uid://duh3kgtvneoyd"
+path="res://.godot/imported/block.png-734396bc900630796fb7a5117c683f16.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/Geovanna/dashSprite.png"
-dest_files=["res://.godot/imported/dashSprite.png-ea9b54d1ff9d8827d60ece1e57fd4b3b.ctex"]
+source_file="res://assets/Sprites/Geovanna/spriteSheet/block.png"
+dest_files=["res://.godot/imported/block.png-734396bc900630796fb7a5117c683f16.ctex"]
 
 [params]
 

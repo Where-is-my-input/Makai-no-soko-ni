@@ -34,12 +34,15 @@ var stacks:int = 0
 
 #states
 var isDashing = false
+var isBlocking = false
 #var directionVector = Vector2()
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var hitstun:int = 0
 var aIdle = "idle"
+
+#TODO Separar a animation tree com states de movimento (idle, dash), pra definir golpes
 
 func _ready():
 	animatedTree.set_deferred("active", true)
@@ -54,8 +57,7 @@ func _physics_process(delta):
 		if vc.attack:
 			aIdle = "attack"
 		elif vc.block:
-			aIdle = "block"
-		
+			block()
 		if directionVector.x != 0:
 			setFacing(vc.direction.x)
 		
@@ -75,17 +77,20 @@ func _physics_process(delta):
 			jump()
 		elif vc.jumpRelease:
 			jumpRelease()
-		# Handle dash.
 		var speedModified = crest_system.speedModifier(SPEED) #TODO create a function to set the modified speed when finishing equiping the crest
-		if vc.dash && !isDashing && dash_timer.is_stopped():
-			dash()
-		elif (vc.isDashHeld || !is_on_floor()) && isDashing:
-			velocity.x = facing * (abs(velocity.x / speedModified) + speedModified) * 4
-		elif directionVector.x:
-			velocity.x = directionVector.x * speedModified
-			isDashing = false
+		if is_on_floor() && isBlocking:
+				velocity.x = move_toward(velocity.x, 0, speedModified)
 		else:
-			velocity.x = move_toward(velocity.x, 0, speedModified)
+			if vc.dash && !isDashing && dash_timer.is_stopped():
+				dash()
+			elif (vc.isDashHeld || !is_on_floor()) && isDashing:
+				velocity.x = facing * (abs(velocity.x / speedModified) + speedModified) * 4
+			elif directionVector.x:
+				velocity.x = directionVector.x * speedModified
+				isDashing = false
+			else:
+				velocity.x = move_toward(velocity.x, 0, speedModified)
+			
 	else:
 		hitstun -= 1
 		if hitstun <= 0:
@@ -96,9 +101,14 @@ func _physics_process(delta):
 func setAnimation():
 		animatedTree.set(A_State, aIdle)
 
+func block():
+	aIdle = "block"
+	isBlocking = true
+
 func dash():
 	if dashes < maxDashes:
 		isDashing = true
+		aIdle = "dash"
 		dash_timer.start(0.5)
 		if !is_on_floor():
 			dashes += 1
@@ -120,8 +130,10 @@ func jumpRelease():
 
 func endDash():
 	isDashing = false
+	aIdle = "idle"
 
 func _on_dash_timer_timeout():
+	aIdle = "idle"
 	if is_on_floor():
 		endDash()
 
@@ -157,6 +169,7 @@ func hitEffects(body, hitstop:float = 0.15, damageDealt:float = attack, damageTy
 func returnToIdle():
 	stopDash()
 	aIdle = "idle"
+	isBlocking = false
 	setAnimation()
 
 func stopDash():

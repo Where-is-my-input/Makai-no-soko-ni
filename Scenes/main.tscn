@@ -15,22 +15,21 @@
 [node name="Main" type="Node2D"]
 script = ExtResource("1_6iyac")
 
+[node name="body" parent="." node_paths=PackedStringArray("vc") instance=ExtResource("1_tgdj8")]
+vc = NodePath("../virtualController")
+
 [node name="boss" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_jkdf5")]
 position = Vector2(3874.1174, 1692.4175)
-player = NodePath("../Player")
+player = NodePath("")
 
 [node name="boss2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_fdnlq")]
 position = Vector2(7966.106, 993.4765)
-player = NodePath("../Player")
-
-[node name="Player" parent="." node_paths=PackedStringArray("vc") instance=ExtResource("1_tgdj8")]
-position = Vector2(8008, 504)
-vc = NodePath("../virtualController")
+player = NodePath("")
 
 [node name="virtualController" parent="." instance=ExtResource("1_d1ilt")]
 
 [node name="inGameUI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("10_hptm8")]
-player = NodePath("../Player")
+player = NodePath("../body")
 
 [node name="MovingPlatform" parent="." instance=ExtResource("4_wu6sk")]
 position = Vector2(3418, 1133)
