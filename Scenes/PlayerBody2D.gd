@@ -23,6 +23,7 @@ var jumps = 0
 var maxDashes = 1
 var dashes = 0
 var dashDuration = 5
+var canRun:bool = true
 
 #stats
 var stamina:int = 100
@@ -85,10 +86,13 @@ func _physics_process(delta):
 		else:
 			if vc.dash && !isDashing && dash_timer.is_stopped():
 				dash()
-			elif (vc.isDashHeld || !is_on_floor()) && isDashing:
+			#elif (vc.isDashHeld || !is_on_floor()) && isDashing:
+			elif !is_on_floor() || isDashing:
 				velocity.x = facing * (abs(velocity.x / speedModified) + speedModified) * 4
 			elif directionVector.x:
-				velocity.x = directionVector.x * speedModified
+				#TODO setup run startup
+				velocity.x = directionVector.x * speedModified * 3 if canRun && vc.isDashHeld else directionVector.x * speedModified
+				print(velocity)
 				isDashing = false
 			else:
 				velocity.x = move_toward(velocity.x, 0, speedModified)
