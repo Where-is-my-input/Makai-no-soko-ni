@@ -37,6 +37,8 @@ var core:Core = Core.CORELESS
 #Upgrades
 var dashes:int = 0
 var jumps:int = 1
+var canWallCling:bool = false
+var canRun:bool = false
 
 var currentSlot:int = 0
 
@@ -54,11 +56,18 @@ func setCoreSelected(c:Core = Core.CORELESS):
 func saveGame():
 	var file = FileAccess.open(savePath, FileAccess.WRITE)
 	file.store_var(core)
-	file.store_var(InGameTimer.time)
+	file.store_var(dashes)
+	file.store_var(jumps)
+	file.store_var(canWallCling)
+	file.store_var(canRun)
 
 func loadGame():
 	if FileAccess.file_exists(savePath):
 		var file = FileAccess.open(savePath, FileAccess.READ)
 		core = file.get_var(core)
 		InGameTimer.time = file.get_var(InGameTimer.time)
+		dashes = file.get_var(dashes)
+		jumps = file.get_var(jumps)
+		canWallCling = file.get_var(canWallCling)
+		canRun = file.get_var(canRun)
 		

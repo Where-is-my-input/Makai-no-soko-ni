@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://brpryaa6blx3x"]
+[gd_scene load_steps=11 format=4 uid="uid://brpryaa6blx3x"]
 
 [ext_resource type="Script" uid="uid://bltgjwa8asr6c" path="res://Scenes/system/stage.gd" id="1_6iyac"]
 [ext_resource type="PackedScene" uid="uid://rc3aggfpupcw" path="res://Scenes/virtual_controller/virtual_controller.tscn" id="1_d1ilt"]
@@ -8,9 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://d5ecinhvtmc0" path="res://Scenes/collision_objects/moving_platform.tscn" id="4_wu6sk"]
 [ext_resource type="PackedScene" uid="uid://bw2fb0ynhxejh" path="res://Scenes/tileset/tile_map.tscn" id="6_0l4rx"]
 [ext_resource type="PackedScene" uid="uid://d4aexgs6n4rl2" path="res://Scenes/collision_objects/illusion_platform.tscn" id="7_d3ab4"]
-[ext_resource type="PackedScene" uid="uid://doxpxpkm7pkft" path="res://Scenes/bosses/alexandra/alexandra.tscn" id="9_fdnlq"]
+[ext_resource type="PackedScene" uid="uid://doxpxpkm7pkft" path="res://Scenes/bosses/alexandra/alexandra.tscn" id="10_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://dq03aualu4bnx" path="res://Scenes/UI/in_game_UI/in_game_ui.tscn" id="10_hptm8"]
-[ext_resource type="PackedScene" uid="uid://d28dhpm8way5n" path="res://Scenes/enemies/enemy_1.tscn" id="11_d1ilt"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_6iyac")
@@ -19,11 +18,8 @@ script = ExtResource("1_6iyac")
 position = Vector2(-160, 952)
 
 [node name="body" parent="." node_paths=PackedStringArray("vc") instance=ExtResource("1_tgdj8")]
-position = Vector2(6784, 1056)
+position = Vector2(8360, 1056)
 vc = NodePath("../virtualController")
-
-[node name="boss2" parent="." instance=ExtResource("9_fdnlq")]
-position = Vector2(7966.106, 993.4765)
 
 [node name="virtualController" parent="." instance=ExtResource("1_d1ilt")]
 
@@ -56,5 +52,6 @@ position = Vector2(3983, 888)
 [node name="falling_platform5" parent="platforms" instance=ExtResource("3_j3hri")]
 position = Vector2(4255, 888)
 
-[node name="Enemy1" parent="." instance=ExtResource("11_d1ilt")]
-position = Vector2(6433, 1098)
+[node name="boss" parent="." node_paths=PackedStringArray("player") instance=ExtResource("10_d1ilt")]
+position = Vector2(7931.837, 982.7918)
+player = NodePath("../body")

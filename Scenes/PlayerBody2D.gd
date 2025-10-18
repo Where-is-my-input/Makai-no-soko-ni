@@ -23,7 +23,8 @@ var jumps = 0
 var maxDashes = 1
 var dashes = 0
 var dashDuration = 5
-var canRun:bool = true
+var canRun:bool = false
+var canWallCling:bool = false
 
 #stats
 var stamina:int = 100
@@ -36,6 +37,7 @@ var stacks:int = 0
 #states
 var isDashing = false
 var isBlocking = false
+var isRunning = false
 #var directionVector = Vector2()
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -48,6 +50,8 @@ var aIdle = "idle"
 func _ready():
 	maxDashes = Inventory.dashes
 	maxJumps = Inventory.jumps
+	canWallCling = Inventory.canWallCling
+	canRun = Inventory.canRun
 	animatedTree.set_deferred("active", true)
 	updateHealth.emit(hp)
 	level_system.levelUp.connect(levelUp)
@@ -68,7 +72,10 @@ func _physics_process(delta):
 			endDash()
 		# Add the gravity.
 		if not is_on_floor():
-			velocity.y += gravity * delta
+			if is_on_wall() && canWallCling:
+				velocity.y = 0
+			else:
+				velocity.y += gravity * delta
 		elif dash_timer.is_stopped():
 			isDashing = false
 		
@@ -86,13 +93,18 @@ func _physics_process(delta):
 		else:
 			if vc.dash && !isDashing && dash_timer.is_stopped():
 				dash()
-			#elif (vc.isDashHeld || !is_on_floor()) && isDashing:
-			elif !is_on_floor() || isDashing:
+			elif (vc.isDashHeld || !is_on_floor()) && isDashing:
+			#elif !is_on_floor() && isDashing:
 				velocity.x = facing * (abs(velocity.x / speedModified) + speedModified) * 4
 			elif directionVector.x:
 				#TODO setup run startup
-				velocity.x = directionVector.x * speedModified * 3 if canRun && vc.isDashHeld else directionVector.x * speedModified
-				print(velocity)
+				if canRun && vc.isDashHeld && is_on_floor() || !is_on_floor() && isRunning:
+					isRunning = true
+					speedModified *= 3
+				else:
+					isRunning = false
+				
+				velocity.x =  directionVector.x * speedModified
 				isDashing = false
 			else:
 				velocity.x = move_toward(velocity.x, 0, speedModified)

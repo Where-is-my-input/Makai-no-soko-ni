@@ -42,6 +42,7 @@ layout_mode = 2
 text = "Geo"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 alignment = 1
 

@@ -28,7 +28,7 @@ func _input(event):
 func remmapEvent(event):
 	InputMap.action_erase_events(currentAction)
 	InputMap.action_add_event(currentAction, event)
-	print(currentAction, " - set")
+	print(currentAction, " - set to - ", event)
 
 
 func setDevice(id):
