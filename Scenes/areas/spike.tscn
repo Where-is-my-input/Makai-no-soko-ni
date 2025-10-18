@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpx5s81liu5cg"]
+
+[ext_resource type="Script" uid="uid://dtqaya0as2jsn" path="res://Scenes/areas/spike.gd" id="1_nsw41"]
+[ext_resource type="Texture2D" uid="uid://btd4mqoye2o4g" path="res://assets/wimiProductions.png" id="2_5q6q3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtv46"]
+size = Vector2(64, 64)
+
+[node name="spike" type="Area2D"]
+script = ExtResource("1_nsw41")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vtv46")
+debug_color = Color(0.98251337, 0, 0.3657151, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.9073486e-06, 9.536743e-07)
+scale = Vector2(0.12955464, 0.124031015)
+texture = ExtResource("2_5q6q3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

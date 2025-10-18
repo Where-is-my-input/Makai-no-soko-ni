@@ -2,6 +2,7 @@ extends Control
 @onready var tmr_map: Timer = $tmrMap
 @export var deviceId:int = -1
 @onready var lbl_axis_value: Label = $VBoxContainer/lblAxisValue
+@onready var lbl_notice: Label = $VBoxContainer/lblNotice
 
 @export var array = ["jump", "dash", "attack", "block"]
 var globalInputs = ["ui_down","ui_left","ui_up","ui_right","ui_accept","ui_cancel"]
@@ -29,6 +30,7 @@ func remmapEvent(event):
 	InputMap.action_erase_events(currentAction)
 	InputMap.action_add_event(currentAction, event)
 	print(currentAction, " - set to - ", event)
+	lbl_notice.text = str(currentAction) + " - set to - " + str(event)
 
 
 func setDevice(id):

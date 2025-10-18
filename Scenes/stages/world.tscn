@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dn3ls1672p0jb"]
+[gd_scene load_steps=6 format=3 uid="uid://dn3ls1672p0jb"]
 
 [ext_resource type="PackedScene" uid="uid://w82y72hxqnnk" path="res://Scenes/stages/intro/intro.tscn" id="1_chdty"]
 [ext_resource type="Script" uid="uid://cb512ak244og" path="res://Scenes/stages/world.gd" id="1_o82b4"]
 [ext_resource type="PackedScene" uid="uid://1xbfaqaulvhb" path="res://Scenes/bosses/lote/lote.tscn" id="4_uc0d0"]
 [ext_resource type="PackedScene" uid="uid://d28dhpm8way5n" path="res://Scenes/enemies/enemy_1.tscn" id="5_f151s"]
+[ext_resource type="PackedScene" uid="uid://6y7gdu47xbuh" path="res://Scenes/areas/dot_hazard.tscn" id="5_o82b4"]
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_o82b4")
@@ -18,6 +19,9 @@ position = Vector2(-4500.701, 594.3803)
 
 [node name="Enemy2" parent="." instance=ExtResource("5_f151s")]
 position = Vector2(-3331, 734)
+
+[node name="dotHazard" parent="." instance=ExtResource("5_o82b4")]
+position = Vector2(258.21747, 540.62134)
 
 [node name="boss" parent="." instance=ExtResource("4_uc0d0")]
 position = Vector2(-740.07385, 3264.538)

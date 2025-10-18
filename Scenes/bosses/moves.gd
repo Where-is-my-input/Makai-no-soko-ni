@@ -7,9 +7,9 @@ var previousAttack:int = 0
 var currentAttack:int = 0
 var attackHit:bool = false
 var moveCount:int = 0
-var maxSize:int = 100
+var maxSize:int = 10
 
-func _ready() -> void:
+func startMoveRolls():
 	for c in get_children():
 		moves.push_back(c.get_index())
 	moveCount = moves.size()# - 1
@@ -30,8 +30,10 @@ func attackSuccessful():
 	moves.push_back(currentAttack)
 
 func attackFailed():
+	if moves.size() <= maxSize: return
 	moves.remove_at(moves.find(currentAttack, moveCount))
 
 func getRandomMove() -> int:
-	#return randi_range(0, moveCount)
-	return moves.pick_random() if !moves.is_empty() else 0 #Use this instead InGameTimer.getRNG()
+	var index = InGameTimer.getRNG(moves.size())
+	print(index, " - moves size: ", moves.size())
+	return moves[index] if !moves.is_empty() else 0

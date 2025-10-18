@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=4 uid="uid://brpryaa6blx3x"]
+[gd_scene load_steps=12 format=4 uid="uid://brpryaa6blx3x"]
 
 [ext_resource type="Script" uid="uid://bltgjwa8asr6c" path="res://Scenes/system/stage.gd" id="1_6iyac"]
 [ext_resource type="PackedScene" uid="uid://rc3aggfpupcw" path="res://Scenes/virtual_controller/virtual_controller.tscn" id="1_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://c5euaw5jcse1y" path="res://Scenes/player.tscn" id="1_tgdj8"]
 [ext_resource type="PackedScene" uid="uid://bcn51822r3ndn" path="res://Scenes/enemies/turret.tscn" id="3_6iyac"]
 [ext_resource type="PackedScene" uid="uid://daccvelcfm2au" path="res://Scenes/collision_objects/falling_platform.tscn" id="3_j3hri"]
+[ext_resource type="PackedScene" uid="uid://6y7gdu47xbuh" path="res://Scenes/areas/dot_hazard.tscn" id="4_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://d5ecinhvtmc0" path="res://Scenes/collision_objects/moving_platform.tscn" id="4_wu6sk"]
 [ext_resource type="PackedScene" uid="uid://bw2fb0ynhxejh" path="res://Scenes/tileset/tile_map.tscn" id="6_0l4rx"]
 [ext_resource type="PackedScene" uid="uid://d4aexgs6n4rl2" path="res://Scenes/collision_objects/illusion_platform.tscn" id="7_d3ab4"]
@@ -14,11 +15,14 @@
 [node name="Main" type="Node2D"]
 script = ExtResource("1_6iyac")
 
+[node name="dotHazard" parent="." instance=ExtResource("4_d1ilt")]
+position = Vector2(4008.628, 1830.3303)
+
 [node name="turret" parent="." instance=ExtResource("3_6iyac")]
 position = Vector2(-160, 952)
 
 [node name="body" parent="." node_paths=PackedStringArray("vc") instance=ExtResource("1_tgdj8")]
-position = Vector2(8360, 1056)
+position = Vector2(3824, 1840)
 vc = NodePath("../virtualController")
 
 [node name="virtualController" parent="." instance=ExtResource("1_d1ilt")]

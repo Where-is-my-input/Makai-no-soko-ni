@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name projectile
 
 @export var direction:Vector2 = Vector2(20, 0)
 @export var timeToDespawnOffscreen:float = 5

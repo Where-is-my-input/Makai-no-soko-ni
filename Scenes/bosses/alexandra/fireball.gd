@@ -18,12 +18,12 @@ func fire():
 	add_child(fireball)
 	fireball.global_position = parent.body.global_position
 	fireball.direction = Vector2(200 * parent.body.facing, 0)
-	var dir = (parent.body.player.global_position - fireball.global_position).normalized()
-	fireball.global_rotation = dir.angle() + PI / 2.0
-	fireball.global_rotation = dir.angle() + PI / 2.0
+	#var dir = (parent.body.player.global_position - fireball.global_position).normalized()
+	#fireball.global_rotation = dir.angle() + PI / 2.0
+	#fireball.global_rotation = dir.angle() + PI / 2.0
 	fireball.direction = fireball.global_position.direction_to(parent.body.player.global_position) * Vector2(speed, speed)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if get_parent().body.velocity.y > 0:
 		fire()
 		set_physics_process(false)

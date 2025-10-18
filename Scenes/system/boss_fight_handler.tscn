@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://iqcsnnpj7ig8"]
+
+[ext_resource type="Script" uid="uid://cd4nhcsptjyyb" path="res://Scenes/system/boss_fight_handler.gd" id="1_efkij"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0b0e2"]
+size = Vector2(1600, 368)
+
+[node name="bossFightHandler" type="Area2D"]
+script = ExtResource("1_efkij")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0b0e2")
+debug_color = Color(0.6603695, 0.88426507, 0.967253, 0.41960785)
+
+[node name="cameraLimits" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

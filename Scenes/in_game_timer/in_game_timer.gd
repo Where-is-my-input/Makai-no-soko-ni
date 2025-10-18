@@ -26,8 +26,8 @@ func _process(_delta):
 	minutes = fmod(time, 3600) / 60
 	hours = floor(time / 60 / 60 / 60)
 
-func getRNG():
-	return int(time) % 5
+func getRNG(modValue:int = 5):
+	return int(time) % modValue if modValue > 0 else 0
 
 func runCycle():
 	globalCycle0.emit()

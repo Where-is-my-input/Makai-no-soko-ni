@@ -10,6 +10,8 @@ extends CharacterBody2D
 @onready var crest_system: Node = $components/crest_system
 @onready var double_jump_lockout: Timer = $doubleJumpLockout
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var delete_later: Camera2D = $deleteLater
+@onready var use_later_instead_of_camera: RemoteTransform2D = $useLaterInsteadOfCamera
 
 signal updateHealth
 signal updateStacks
@@ -148,7 +150,7 @@ func jumpRelease():
 
 func endDash():
 	isDashing = false
-	aIdle = "idle"
+	aIdle = "idle" if aIdle != "attack" else aIdle
 
 func _on_dash_timer_timeout():
 	aIdle = "idle"
@@ -196,11 +198,11 @@ func stopDash():
 	endDash()
 	dash_timer.stop()
 
-func getHit(damage = 1, knockback = true, knockbackDir = Vector2(2000, -500)):
+func getHit(damage = 1, knockback = true, knockbackDir = Vector2(2000, -500), hitHitstun = 15):
 	Global.combo = 0
 	var damageTakenCrestModified = crest_system.returnDamageTaken()
 	damage = damageTakenCrestModified if damageTakenCrestModified > 0 else damage
-	hitstun = 15
+	hitstun = hitHitstun
 	if knockback: getKnockedback(knockbackDir)
 	hp -= damage
 	updateHealth.emit(hp)
@@ -236,3 +238,10 @@ func _on_block_box_area_entered(area: Area2D) -> void:
 
 func blockEffects(hitstop):
 	Global.hitstop.emit(hitstop)
+
+func setCamera(camera:Camera2D):
+	if delete_later != null: delete_later.queue_free()
+	use_later_instead_of_camera.remote_path = camera.get_path()
+
+func removeCamera():
+	use_later_instead_of_camera.set_remote_node("")

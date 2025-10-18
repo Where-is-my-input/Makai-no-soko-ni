@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bp814ra1bnh11" path="res://Scenes/areas/projectile.gd" id="1_vo7y1"]
 [ext_resource type="PackedScene" uid="uid://bl7627p04cq51" path="res://Scenes/areas/hitbox.tscn" id="2_0rpdy"]
-[ext_resource type="Texture2D" uid="uid://dxeptvi536nsj" path="res://assets/Sprites/Mobs/fireballs/fireball.png" id="3_gyssg"]
+[ext_resource type="Texture2D" uid="uid://dxeptvi536nsj" path="res://assets/Sprites/Mobs/projectiles/fireball.png" id="3_gyssg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8i66"]
 size = Vector2(0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_haoxq"]
+resource_local_to_scene = true
 
 [node name="projectile" type="CharacterBody2D" groups=["Projectile"]]
 script = ExtResource("1_vo7y1")

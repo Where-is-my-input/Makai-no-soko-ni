@@ -34,13 +34,13 @@ func _input(event):
 			DisplayServer.window_set_mode(0)
 
 func setHitstop(hitstopAmount:float = 10.0):
-	if stage != null:
-		#stage.set_process(false)
-		#stage.set_physics_process(false)
-		get_tree().paused = true
-		#process_mode = Node.PROCESS_MODE_DISABLED
-		await get_tree().create_timer(hitstopAmount).timeout
-		#process_mode = Node.PROCESS_MODE_ALWAYS
-		#stage.set_process(true)
-		#stage.set_physics_process(true)
-		get_tree().paused = false
+	#if stage != null:
+	#stage.set_process(false)
+	#stage.set_physics_process(false)
+	get_tree().paused = true
+	#process_mode = Node.PROCESS_MODE_DISABLED
+	await get_tree().create_timer(hitstopAmount).timeout
+	#process_mode = Node.PROCESS_MODE_ALWAYS
+	#stage.set_process(true)
+	#stage.set_physics_process(true)
+	get_tree().paused = false

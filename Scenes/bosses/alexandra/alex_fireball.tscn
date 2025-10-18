@@ -1,7 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://bc3csbqfasoet"]
+[gd_scene load_steps=4 format=3 uid="uid://bc3csbqfasoet"]
 
 [ext_resource type="PackedScene" uid="uid://coto6ltakml6o" path="res://Scenes/areas/projectile.tscn" id="1_yrw7j"]
+[ext_resource type="Texture2D" uid="uid://ccx4nyfm1exu6" path="res://assets/Sprites/Alexandra/firefireBall.png" id="2_8tusm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tusm"]
+resource_local_to_scene = true
+size = Vector2(20, 140)
 
 [node name="alexFireball" instance=ExtResource("1_yrw7j")]
+
+[node name="CollisionShape2D" parent="a2dHitbox" index="0"]
+shape = SubResource("RectangleShape2D_8tusm")
+
+[node name="Sprite2D" parent="." index="2"]
+position = Vector2(-9.536743e-07, 9.536743e-07)
+texture = ExtResource("2_8tusm")
 
 [connection signal="area_entered" from="a2dHitbox" to="a2dHitbox" method="_on_area_entered"]

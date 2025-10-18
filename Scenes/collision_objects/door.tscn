@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfa7lwma8hwbx"]
+
+[ext_resource type="Script" uid="uid://b2tn35p5witpd" path="res://Scenes/collision_objects/door.gd" id="1_sej2k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_48681"]
+size = Vector2(96, 320)
+
+[node name="door" type="CharacterBody2D"]
+collision_layer = 65537
+collision_mask = 65537
+script = ExtResource("1_sej2k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(48, 160)
+shape = SubResource("RectangleShape2D_48681")
+disabled = true

@@ -1,8 +1,183 @@
-[gd_scene load_steps=3 format=3 uid="uid://1xbfaqaulvhb"]
+[gd_scene load_steps=12 format=3 uid="uid://1xbfaqaulvhb"]
 
 [ext_resource type="PackedScene" uid="uid://bp0l628jvenqb" path="res://Scenes/bosses/boss.tscn" id="1_lrecb"]
+[ext_resource type="Texture2D" uid="uid://d2ghv8kg8bd86" path="res://assets/Sprites/Lothe/idle.png" id="2_nbp8k"]
 [ext_resource type="PackedScene" uid="uid://b8towtrgpbw4m" path="res://Scenes/bosses/lote/lote_lunge.tscn" id="2_ukdxu"]
+[ext_resource type="Texture2D" uid="uid://15he5b4jqhes" path="res://assets/Sprites/Lothe/lunge.png" id="3_cdl0t"]
+[ext_resource type="PackedScene" uid="uid://bl7627p04cq51" path="res://Scenes/areas/hitbox.tscn" id="5_cwy4v"]
 
-[node name="boss" instance=ExtResource("1_lrecb")]
+[sub_resource type="SpriteFrames" id="SpriteFrames_nbp8k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nbp8k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_cdl0t")
+}],
+"loop": true,
+"name": &"lunge",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_cdl0t"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("as2d:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("a2dHitbox2/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ovppu"]
+size = Vector2(127.25, 49)
+
+[sub_resource type="Animation" id="Animation_cwy4v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("as2d:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("a2dHitbox2/CollisionShape2D:shape")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("RectangleShape2D_ovppu")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("a2dHitbox2/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("a2dHitbox2/CollisionShape2D:shape:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(127.25, 49)]
+}
+
+[sub_resource type="Animation" id="Animation_ovppu"]
+resource_name = "lunge"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("as2d:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"lunge"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("a2dHitbox2/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.16666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("a2dHitbox2/CollisionShape2D:shape:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.16666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(127.25, 49)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ovppu"]
+_data = {
+&"RESET": SubResource("Animation_cwy4v"),
+&"idle": SubResource("Animation_cdl0t"),
+&"lunge": SubResource("Animation_ovppu")
+}
+
+[node name="lote" instance=ExtResource("1_lrecb")]
+attackCooldown = 1.5
+
+[node name="as2d" type="AnimatedSprite2D" parent="." index="1"]
+position = Vector2(-17.999998, -50)
+scale = Vector2(-0.223, 0.223)
+sprite_frames = SubResource("SpriteFrames_nbp8k")
+
+[node name="moves" parent="." index="2" node_paths=PackedStringArray("ap")]
+ap = NodePath("../ap")
 
 [node name="loteLunge" parent="moves" index="0" instance=ExtResource("2_ukdxu")]
+
+[node name="ap" type="AnimationPlayer" parent="." index="5"]
+libraries = {
+&"": SubResource("AnimationLibrary_ovppu")
+}
+
+[node name="a2dHitbox2" parent="." index="6" instance=ExtResource("5_cwy4v")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="a2dHitbox2" index="0"]
+position = Vector2(67.375, -0.5)
+shape = SubResource("RectangleShape2D_ovppu")
+disabled = true
+debug_color = Color(0.99999994, 0.0030948073, 0.09210072, 0.41960785)
+
+[connection signal="attackSuccessful" from="a2dHitbox" to="moves" method="attackSuccessful"]

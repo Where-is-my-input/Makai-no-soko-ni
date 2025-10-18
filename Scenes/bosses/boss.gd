@@ -20,6 +20,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var facing:int = 1
 
 signal updateHealth
+signal defated
 var hpBarTied:bool = false
 
 func _ready() -> void:
@@ -28,7 +29,6 @@ func _ready() -> void:
 		await get_tree().create_timer(0.5).timeout
 	#a_2d_hitbox.attackSuccessful.connect(moves.attackSuccessful())
 
-#TODO Logic to prefer moves that were sucessful
 func _physics_process(delta: float) -> void:
 	if player != null :
 		if currentAttack == null: 
@@ -37,9 +37,6 @@ func _physics_process(delta: float) -> void:
 				scale.x *= -1
 
 		if currentAttack == null:
-			#currentAttack = moves.moves.pick_random()
-			#if currentAttack == previousAttack: currentAttack = moves.moves.pick_random()
-			#moves.nextAttack().action()
 			currentAttack = moves.nextAttack()
 			currentAttack.action()
 	
@@ -50,9 +47,8 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func _on_ap_animation_finished(anim_name: StringName) -> void:
-	#currentAttack = null
-	tmr_cooldown.start(attackCooldown)
+func _on_ap_animation_finished(_anim_name: StringName) -> void:
+	if tmr_cooldown != null: tmr_cooldown.start(attackCooldown)
 
 func _on_tmr_cooldown_timeout() -> void:
 	currentAttack = null
@@ -61,5 +57,9 @@ func takeDamage(damageTaken = 1, damageType = Global.DamageType.PHYSICAL, isStag
 	HP -= damageTaken - defense if damageTaken - defense > 0 else 1
 	updateHealth.emit(HP)
 	if HP <= 0:
+		defated.emit()
 		print("Boss is dead")
 		queue_free()
+
+func startFighting():
+	moves.startMoveRolls()
